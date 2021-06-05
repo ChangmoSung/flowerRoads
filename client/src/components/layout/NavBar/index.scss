@@ -1,5 +1,3 @@
-@import "../../styles/mediaQueries";
-
 .toggleNavButton {
   position: fixed;
   right: 3rem;
@@ -11,18 +9,21 @@
 }
 
 nav {
-  padding: 3rem;
+  position: fixed;
+  right: -35rem;
+  top: 10rem;
+  width: 100vw;
+  height: 55rem;
+  padding: 0 3rem 3rem;
+  transition: right 0.5s;
+  background: white;
 
   &.show {
     right: 0;
   }
 
-  @include mq768 {
-    position: fixed;
-    right: -25rem;
-    top: 7rem;
+  &.hidden {
     width: 25rem;
-    height: 55rem;
   }
 
   ul {
@@ -30,14 +31,11 @@ nav {
     margin: 0;
     padding: 0;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
+    align-items: flex-end;
     font-size: 1.8rem;
     height: 100%;
-
-    @include mq768 {
-      flex-direction: column;
-      align-items: flex-end;
-    }
 
     a {
       text-decoration: none;

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useRef } from "react";
 import "./index.scss";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -9,23 +9,36 @@ import ChangeLangButtons from "../ChangeLangButtons/index.js";
 import blueFlower from "../../../images/blueFlower.png";
 
 const NavBar = ({ signOut }) => {
+  const navEl = useRef(null);
+
+  const toggleNav = () => {
+    const navIsHidden = navEl.current.className === "hidden";
+    navEl.current.className = navIsHidden ? "show" : "hidden";
+  };
+
   const { t } = useTranslation();
 
   return (
     <Fragment>
-      <button className="toggleNavButton">
+      <button className="toggleNavButton" onClick={() => toggleNav()}>
         <img src={blueFlower} />
       </button>
-      <nav>
+      <nav className="hidden" ref={navEl}>
         <ul>
           <li>
-            <Link to="/foods">{t("foods")}</Link>
+            <Link to="/foods" onClick={() => toggleNav()}>
+              {t("foods")}
+            </Link>
           </li>
           <li>
-            <Link to="/sideEffects">{t("sideEffects")}</Link>
+            <Link to="/sideEffects" onClick={() => toggleNav()}>
+              {t("sideEffects")}
+            </Link>
           </li>
           <li>
-            <Link to="/chemotherapy">{t("chemotherapy")}</Link>
+            <Link to="/chemotherapy" onClick={() => toggleNav()}>
+              {t("chemotherapy")}
+            </Link>
           </li>
           <li>
             <ChangeLangButtons />
