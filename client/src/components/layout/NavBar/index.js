@@ -43,7 +43,7 @@ const NavBar = ({ signOut }) => {
             <Link
               to="/"
               onClick={() => {
-                if (window.confirm("Would you like to sign out?")) {
+                if (window.confirm(t("wouldYouLikeToSignOut"))) {
                   signOut();
                 }
               }}

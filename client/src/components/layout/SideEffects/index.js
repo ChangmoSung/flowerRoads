@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect, useRef } from "react";
 import "./index.scss";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
@@ -29,6 +29,8 @@ const SideEffects = ({
   sideEffectsListByAdmin,
   isAuthenticated,
 }) => {
+  const sideEffectByUserInput = useRef(null);
+  const sideEffectByAdminInput = useRef(null);
   const [formData, setFormData] = useState({ sideEffectByUser: "" });
   const { sideEffectByUser } = formData;
 
@@ -47,6 +49,7 @@ const SideEffects = ({
       _id: `${sideEffectByUser}-${uuidv4()}`,
       sideEffectByUser,
     });
+    sideEffectByUserInput.current.value = "";
   };
 
   const onChangeByAdmin = (e) =>
@@ -54,6 +57,7 @@ const SideEffects = ({
   const onSubmitByAdmin = (e) => {
     e.preventDefault();
     addSideEffectByAdmin({ sideEffectByAdmin });
+    sideEffectByAdminInput.current.value = "";
   };
 
   const admin = roles.includes("admin");
@@ -78,6 +82,7 @@ const SideEffects = ({
           {admin && (
             <form onSubmit={onSubmitByAdmin}>
               <input
+                ref={sideEffectByAdminInput}
                 type="text"
                 name="sideEffectByAdmin"
                 onChange={onChangeByAdmin}
@@ -98,7 +103,9 @@ const SideEffects = ({
                       <button
                         onClick={() =>
                           window.confirm(
-                            `Would you like to delete "${sideEffectByAdmin}"?`
+                            t("wouldYouLikeToDeleteSideEffect", {
+                              sideEffect: sideEffectByAdmin,
+                            })
                           ) && deleteSideEffectByAdmin(_id)
                         }
                       >
@@ -119,6 +126,7 @@ const SideEffects = ({
           </button>
           <form onSubmit={onSubmit}>
             <input
+              ref={sideEffectByUserInput}
               type="text"
               name="sideEffectByUser"
               onChange={onChange}
@@ -137,7 +145,9 @@ const SideEffects = ({
                     <button
                       onClick={() =>
                         window.confirm(
-                          `Would you like to delete "${sideEffectByUser}"?`
+                          t("wouldYouLikeToDeleteSideEffect", {
+                            sideEffect: sideEffectByUser,
+                          })
                         ) && deleteSideEffectByUser(_id)
                       }
                     >

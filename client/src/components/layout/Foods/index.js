@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./index.scss";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
@@ -15,6 +15,7 @@ const Foods = ({
   deleteFood,
   isAuthenticated,
 }) => {
+  const foodNameInput = useRef(null);
   const [formData, setFormData] = useState({ foodName: "" });
   const { foodName } = formData;
 
@@ -23,6 +24,7 @@ const Foods = ({
 
   const onSubmit = (e) => {
     e.preventDefault();
+    foodNameInput.current.value = "";
     addFood({ _id: `${foodName}-${uuidv4()}`, foodName });
   };
 
@@ -39,6 +41,7 @@ const Foods = ({
       <h2>{t("foodsList")}</h2>
       <form onSubmit={onSubmit}>
         <input
+          ref={foodNameInput}
           type="text"
           name="foodName"
           onChange={onChange}
@@ -56,8 +59,9 @@ const Foods = ({
               <div className="buttonsContainer">
                 <button
                   onClick={() =>
-                    window.confirm(`Would you like to delete "${foodName}"?`) &&
-                    deleteFood(_id)
+                    window.confirm(
+                      t("wouldYouLikeToDeleteFood", { foodName })
+                    ) && deleteFood(_id)
                   }
                 >
                   <img src={eraser} />
