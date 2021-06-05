@@ -22,11 +22,10 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router>
+        <ChangeLangButtons />
         <PrivateRoute component={NavBar} />
         <div className="wrapper">
           <Alerts />
-          <Route exact path="/signUpPage" component={ChangeLangButtons} />
-          <Route exact path="/" component={ChangeLangButtons} />
           <Route exact path="/" component={SignInPage} />
           <Switch>
             <Route exact path="/signUpPage" component={SignUpPage} />

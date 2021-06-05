@@ -1,0 +1,42 @@
+.changeLangButton {
+  position: fixed;
+  left: 5rem;
+  top: 5rem;
+  border: 2px solid blue;
+  width: 13.5rem;
+  height: 6rem;
+  border-radius: 1rem;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+
+  .korean,
+  .english {
+    position: absolute;
+    margin: 0 1rem;
+  }
+
+  .korean {
+    left: 0;
+  }
+
+  .english {
+    right: 0;
+  }
+
+  button {
+    width: 5rem;
+    height: 5rem;
+    position: absolute;
+    right: 1rem;
+    z-index: 1;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: right 0.5s;
+
+    &.en {
+      right: 7.5rem;
+    }
+  }
+}

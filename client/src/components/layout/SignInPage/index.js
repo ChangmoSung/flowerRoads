@@ -26,7 +26,7 @@ const SignInPage = ({ signIn, isAuthenticated }) => {
   if (isAuthenticated) return <Redirect to="/mainPage" />;
 
   return (
-    <div className="wrapper signInPage">
+    <div className="signInPage">
       <h1>{t("title")}</h1>
       <form onSubmit={onSubmit}>
         <input

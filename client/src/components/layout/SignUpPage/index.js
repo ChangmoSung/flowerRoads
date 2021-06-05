@@ -40,54 +40,51 @@ const SignUpPage = ({ signUp, isAuthenticated }) => {
   if (isAuthenticated) return <Redirect to="/mainPage" />;
 
   return (
-    <div className="container">
-      <div className="wrapper signUpPage">
-        <h1>{t("title")}</h1>
-        <form onSubmit={onSubmit}>
-          <input
-            type="text"
-            name="firstName"
-            onChange={onChange}
-            placeholder={t("firstName")}
-            aria-label="First name"
-            required
-          />
-          <input
-            type="text"
-            name="lastName"
-            onChange={onChange}
-            placeholder={t("lastName")}
-            aria-label="Last name"
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            onChange={onChange}
-            placeholder={t("email")}
-            aria-label="Email"
-            required
-          />
-          <input
-            type="password"
-            name="password"
-            onChange={onChange}
-            placeholder={t("password")}
-            aria-label="Password"
-            required
-          />
-          <input
-            type="password"
-            name="password2"
-            onChange={onChange}
-            placeholder={t("confirmPassword")}
-            aria-label="Confirm password"
-            required
-          />
-          <button>{t("signUp")}</button>
-        </form>
-        <Link to="/">{t("signIn")}</Link>
-      </div>
+    <div className="signUpPage">
+      <form onSubmit={onSubmit}>
+        <input
+          type="text"
+          name="firstName"
+          onChange={onChange}
+          placeholder={t("firstName")}
+          aria-label="First name"
+          required
+        />
+        <input
+          type="text"
+          name="lastName"
+          onChange={onChange}
+          placeholder={t("lastName")}
+          aria-label="Last name"
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          onChange={onChange}
+          placeholder={t("email")}
+          aria-label="Email"
+          required
+        />
+        <input
+          type="password"
+          name="password"
+          onChange={onChange}
+          placeholder={t("password")}
+          aria-label="Password"
+          required
+        />
+        <input
+          type="password"
+          name="password2"
+          onChange={onChange}
+          placeholder={t("confirmPassword")}
+          aria-label="Confirm password"
+          required
+        />
+        <button>{t("signUp")}</button>
+      </form>
+      <Link to="/">{t("signIn")}</Link>
     </div>
   );
 };
