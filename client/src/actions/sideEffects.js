@@ -46,17 +46,13 @@ export const addSideEffectByAdmin = (sideEffectInfoByAdmin = {}) => async (
       type: ADD_SIDE_EFFECT_BY_ADMIN,
       payload: res.data,
     });
-    dispatch(
-      setAlert({ msg: "Side effect added by admin", alertType: "success" })
-    );
+    dispatch(setAlert({ msg: "sideEffectAdded", alertType: "success" }));
   } catch (err) {
     dispatch({
       type: ADD_SIDE_EFFECT_BY_ADMIN_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
-    dispatch(
-      setAlert({ msg: "Side effect not added by admin", alertType: "danger" })
-    );
+    dispatch(setAlert({ msg: "sideEffectNotAdded", alertType: "danger" }));
   }
 };
 
@@ -72,16 +68,12 @@ export const deleteSideEffectByAdmin = (sideEffectIdByAdmin = "") => async (
       type: DELETE_SIDE_EFFECT_BY_ADMIN,
       payload: res.data,
     });
-    dispatch(
-      setAlert({ msg: "Side effect deleted by admin", alertType: "success" })
-    );
+    dispatch(setAlert({ msg: "sideEffectDeleted", alertType: "success" }));
   } catch (err) {
     dispatch({
       type: DELETE_SIDE_EFFECT_BY_ADMIN_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
-    dispatch(
-      setAlert({ msg: "Side effect not deleted by admin", alertType: "danger" })
-    );
+    dispatch(setAlert({ msg: "sideEffectNotDeleted", alertType: "danger" }));
   }
 };

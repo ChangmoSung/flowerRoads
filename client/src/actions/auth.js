@@ -46,7 +46,7 @@ export const signIn = ({ email = "", password = "" }) => async (dispatch) => {
     });
 
     dispatch(loadUser());
-    dispatch(setAlert({ msg: "Signed in", alertType: "success" }));
+    dispatch(setAlert({ msg: "signInSuccess", alertType: "success" }));
   } catch (err) {
     dispatch({
       type: SIGNIN_FAIL,
@@ -54,7 +54,7 @@ export const signIn = ({ email = "", password = "" }) => async (dispatch) => {
     });
     dispatch(
       setAlert({
-        msg: "Please enter the correct email and password",
+        msg: "enterCorrectEmailAndPassword",
         alertType: "danger",
       })
     );
@@ -63,7 +63,7 @@ export const signIn = ({ email = "", password = "" }) => async (dispatch) => {
 
 export const signOut = () => (dispatch) => {
   dispatch({ type: SIGN_OUT });
-  dispatch(setAlert({ msg: "Signed out", alertType: "success" }));
+  dispatch(setAlert({ msg: "signOutSuccess", alertType: "success" }));
 };
 
 export const signUp = (user = {}) => async (dispatch) => {
@@ -83,12 +83,12 @@ export const signUp = (user = {}) => async (dispatch) => {
       payload: res.data,
     });
     dispatch(loadUser());
-    dispatch(setAlert({ msg: "Signed up", alertType: "success" }));
+    dispatch(setAlert({ msg: "signUpSuccess", alertType: "success" }));
   } catch (err) {
     dispatch({
       type: SIGNUP_FAIL,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
-    dispatch(setAlert({ msg: "User already exists", alertType: "danger" }));
+    dispatch(setAlert({ msg: "userAlreadyExists", alertType: "danger" }));
   }
 };

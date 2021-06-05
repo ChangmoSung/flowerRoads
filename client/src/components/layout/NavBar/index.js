@@ -3,21 +3,28 @@ import "./index.scss";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { useTranslation } from "react-i18next";
 import { signOut } from "../../../actions/auth";
+import ChangeLangButtons from "../ChangeLangButtons/index.js";
 
 const NavBar = ({ signOut }) => {
+  const { t } = useTranslation();
+
   return (
     <Fragment>
       <nav>
         <ul>
           <li>
-            <Link to="/foods">Foods</Link>
+            <Link to="/foods">{t("foods")}</Link>
           </li>
           <li>
-            <Link to="/sideEffects">Side effects</Link>
+            <Link to="/sideEffects">{t("sideEffects")}</Link>
           </li>
           <li>
-            <Link to="/chemotherapy">Chemotherapy</Link>
+            <Link to="/chemotherapy">{t("chemotherapy")}</Link>
+          </li>
+          <li>
+            <ChangeLangButtons />
           </li>
           <li>
             <Link
@@ -28,7 +35,7 @@ const NavBar = ({ signOut }) => {
                 }
               }}
             >
-              Sign out
+              {t("signOut")}
             </Link>
           </li>
         </ul>

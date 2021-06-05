@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import "./index.scss";
 import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-import { signUp } from "../../../actions/auth";
+import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
+import { signUp } from "../../../actions/auth";
 
 const SignUpPage = ({ signUp, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -34,19 +35,20 @@ const SignUpPage = ({ signUp, isAuthenticated }) => {
     }
   };
 
+  const { t } = useTranslation();
+
   if (isAuthenticated) return <Redirect to="/mainPage" />;
 
   return (
     <div className="container">
       <div className="wrapper signUpPage">
-        <h1>Flower roads</h1>
-        <p>Please sign up here</p>
+        <h1>{t("title")}</h1>
         <form onSubmit={onSubmit}>
           <input
             type="text"
             name="firstName"
             onChange={onChange}
-            placeholder="First name"
+            placeholder={t("firstName")}
             aria-label="First name"
             required
           />
@@ -54,7 +56,7 @@ const SignUpPage = ({ signUp, isAuthenticated }) => {
             type="text"
             name="lastName"
             onChange={onChange}
-            placeholder="Last name"
+            placeholder={t("lastName")}
             aria-label="Last name"
             required
           />
@@ -62,7 +64,7 @@ const SignUpPage = ({ signUp, isAuthenticated }) => {
             type="email"
             name="email"
             onChange={onChange}
-            placeholder="Email"
+            placeholder={t("email")}
             aria-label="Email"
             required
           />
@@ -70,7 +72,7 @@ const SignUpPage = ({ signUp, isAuthenticated }) => {
             type="password"
             name="password"
             onChange={onChange}
-            placeholder="Password"
+            placeholder={t("password")}
             aria-label="Password"
             required
           />
@@ -78,13 +80,13 @@ const SignUpPage = ({ signUp, isAuthenticated }) => {
             type="password"
             name="password2"
             onChange={onChange}
-            placeholder="Confirm password"
+            placeholder={t("confirmPassword")}
             aria-label="Confirm password"
             required
           />
-          <button>Sign up</button>
+          <button>{t("signUp")}</button>
         </form>
-        <Link to="/">Sign in</Link>
+        <Link to="/">{t("signIn")}</Link>
       </div>
     </div>
   );

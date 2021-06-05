@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./components/styles/styles.scss";
 import PrivateRoute from "./components/routing/PrivateRoute/index.js";
+import ChangeLangButtons from "./components/layout/ChangeLangButtons/index.js";
 import Alerts from "./components/layout/Alerts/index.js";
 import NavBar from "./components/layout/NavBar/index.js";
 import MainPage from "./components/layout/MainPage/index.js";
@@ -24,6 +25,8 @@ const App = () => {
         <PrivateRoute component={NavBar} />
         <div className="wrapper">
           <Alerts />
+          <Route exact path="/signUpPage" component={ChangeLangButtons} />
+          <Route exact path="/" component={ChangeLangButtons} />
           <Route exact path="/" component={SignInPage} />
           <Switch>
             <Route exact path="/signUpPage" component={SignUpPage} />

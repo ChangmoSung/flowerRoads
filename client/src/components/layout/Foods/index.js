@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
+import { useTranslation } from "react-i18next";
 import { getFoodsList, addFood, deleteFood } from "../../../actions/users";
 import eraser from "../../../images/eraser.png";
 
@@ -29,21 +30,23 @@ const Foods = ({
     getFoodsList();
   }, [getFoodsList]);
 
+  const { t } = useTranslation();
+
   if (!isAuthenticated) return <Redirect to="/" />;
 
   return (
     <div className="foodsContainer">
-      <h2>Foods List</h2>
+      <h2>{t("foodsList")}</h2>
       <form onSubmit={onSubmit}>
         <input
           type="text"
           name="foodName"
           onChange={onChange}
-          placeholder="Food name"
+          placeholder={t("foodName")}
           aria-label="Food name"
           required
         />
-        <button>Add</button>
+        <button>{t("add")}</button>
       </form>
       <div className="foods">
         {foodsList.length > 0 &&
