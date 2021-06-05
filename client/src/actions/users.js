@@ -64,13 +64,13 @@ export const addFood = (foodInfo = {}) => async (dispatch) => {
       type: ADD_FOOD,
       payload: res.data,
     });
-    dispatch(setAlert({ msg: "Food added", alertType: "success" }));
+    dispatch(setAlert({ msg: "foodAdded", alertType: "success" }));
   } catch (err) {
     dispatch({
       type: ADD_FOOD_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
-    dispatch(setAlert({ msg: "Food not added", alertType: "danger" }));
+    dispatch(setAlert({ msg: "foodNotAdded", alertType: "danger" }));
   }
 };
 
@@ -82,13 +82,13 @@ export const deleteFood = (foodId = "") => async (dispatch) => {
       type: DELETE_FOOD,
       payload: res.data,
     });
-    dispatch(setAlert({ msg: "Food deleted", alertType: "success" }));
+    dispatch(setAlert({ msg: "foodDeleted", alertType: "success" }));
   } catch (err) {
     dispatch({
       type: DELETE_FOOD_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
-    dispatch(setAlert({ msg: "Food not deleted", alertType: "danger" }));
+    dispatch(setAlert({ msg: "foodNotDeleted", alertType: "danger" }));
   }
 };
 
@@ -125,13 +125,13 @@ export const addSideEffectByUser = (sideEffectInfo = {}) => async (
       type: ADD_SIDE_EFFECT_BY_USER,
       payload: res.data,
     });
-    dispatch(setAlert({ msg: "Side effect added", alertType: "success" }));
+    dispatch(setAlert({ msg: "sideEffectAdded", alertType: "success" }));
   } catch (err) {
     dispatch({
       type: ADD_SIDE_EFFECT_BY_USER_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
-    dispatch(setAlert({ msg: "Side effect not added", alertType: "danger" }));
+    dispatch(setAlert({ msg: "sideEffectNotAdded", alertType: "danger" }));
   }
 };
 
@@ -147,12 +147,12 @@ export const deleteSideEffectByUser = (sideEffectId = "") => async (
       type: DELETE_SIDE_EFFECT_BY_USER,
       payload: res.data,
     });
-    dispatch(setAlert({ msg: "Side effect deleted", alertType: "success" }));
+    dispatch(setAlert({ msg: "sideEffectDeleted", alertType: "success" }));
   } catch (err) {
     dispatch({
       type: DELETE_SIDE_EFFECT_BY_USER_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
-    dispatch(setAlert({ msg: "Side effect not deleted", alertType: "danger" }));
+    dispatch(setAlert({ msg: "sideEffectNotDeleted", alertType: "danger" }));
   }
 };

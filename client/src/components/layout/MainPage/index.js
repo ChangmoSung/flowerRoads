@@ -3,6 +3,7 @@ import "./index.scss";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { useTranslation } from "react-i18next";
 import { getRoles } from "../../../actions/users";
 
 const MainPage = ({ getRoles, isAuthenticated }) => {
@@ -10,11 +11,13 @@ const MainPage = ({ getRoles, isAuthenticated }) => {
     getRoles();
   }, [getRoles]);
 
+  const { t } = useTranslation();
+
   if (!isAuthenticated) return <Redirect to="/" />;
 
   return (
     <Fragment>
-      <h2>꽃길만걷자</h2>
+      <h2>{t("title")}</h2>
     </Fragment>
   );
 };

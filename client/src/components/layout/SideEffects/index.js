@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
+import { useTranslation } from "react-i18next";
 import {
   getSideEffectsListByUser,
   addSideEffectByUser,
@@ -62,15 +63,17 @@ const SideEffects = ({
     getSideEffectsListByAdmin();
   }, [getSideEffectsListByUser, getSideEffectsListByAdmin]);
 
+  const { t } = useTranslation();
+
   if (!isAuthenticated) return <Redirect to="/" />;
 
   return (
     <div className="sideEffectsContainer">
-      <h2>Side effects</h2>
+      <h2>{t("sideEffects")}</h2>
       {page === "admin" && (
         <Fragment>
           <button className="setPageButton" onClick={() => setPage("user")}>
-            Common side effects
+            {t("commonSideEffects")}
           </button>
           {admin && (
             <form onSubmit={onSubmitByAdmin}>
@@ -78,11 +81,11 @@ const SideEffects = ({
                 type="text"
                 name="sideEffectByAdmin"
                 onChange={onChangeByAdmin}
-                placeholder="Side effect"
+                placeholder={t("enterSideEffect")}
                 aria-label="Side effect"
                 required
               />
-              <button>Add</button>
+              <button>{t("add")}</button>
             </form>
           )}
           <div className="sideEffects">
@@ -112,18 +115,18 @@ const SideEffects = ({
       {page === "user" && (
         <Fragment>
           <button className="setPageButton" onClick={() => setPage("admin")}>
-            Experienced side effects
+            {t("experiencedSideEffects")}
           </button>
           <form onSubmit={onSubmit}>
             <input
               type="text"
               name="sideEffectByUser"
               onChange={onChange}
-              placeholder="Side effect"
+              placeholder={t("enterSideEffect")}
               aria-label="Side effect"
               required
             />
-            <button>Add</button>
+            <button>{t("add")}</button>
           </form>
           <div className="sideEffects">
             {sideEffectsListByUser.length > 0 &&

@@ -3,6 +3,7 @@ import "./index.scss";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { useTranslation } from "react-i18next";
 import { signIn } from "../../../actions/auth";
 
 const SignInPage = ({ signIn, isAuthenticated }) => {
@@ -20,18 +21,19 @@ const SignInPage = ({ signIn, isAuthenticated }) => {
     signIn({ email, password });
   };
 
+  const { t } = useTranslation();
+
   if (isAuthenticated) return <Redirect to="/mainPage" />;
 
   return (
     <div className="wrapper signInPage">
-      <h1>Flower roads</h1>
-      <p>You can beat your cancer</p>
+      <h1>{t("title")}</h1>
       <form onSubmit={onSubmit}>
         <input
           type="email"
           name="email"
           onChange={onChange}
-          placeholder="Email"
+          placeholder={t("email")}
           aria-label="Email"
           required
         />
@@ -39,14 +41,14 @@ const SignInPage = ({ signIn, isAuthenticated }) => {
           type="password"
           name="password"
           onChange={onChange}
-          placeholder="Password"
+          placeholder={t("password")}
           aria-label="Password"
           required
         />
-        <button>Sign in</button>
+        <button>{t("signIn")}</button>
       </form>
       <p>
-        Don't have an account? <Link to="/signUpPage">Sign up</Link>
+        {t("dontHaveAccount")} <Link to="/signUpPage">{t("signUp")}</Link>
       </p>
     </div>
   );
