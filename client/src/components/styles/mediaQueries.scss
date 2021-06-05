@@ -1,0 +1,11 @@
+@mixin mq768 {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin mq450 {
+  @media (max-width: 450px) {
+    @content;
+  }
+}

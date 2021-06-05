@@ -6,12 +6,16 @@ import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 import { signOut } from "../../../actions/auth";
 import ChangeLangButtons from "../ChangeLangButtons/index.js";
+import blueFlower from "../../../images/blueFlower.png";
 
 const NavBar = ({ signOut }) => {
   const { t } = useTranslation();
 
   return (
     <Fragment>
+      <button className="toggleNavButton">
+        <img src={blueFlower} />
+      </button>
       <nav>
         <ul>
           <li>
