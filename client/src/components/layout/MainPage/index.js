@@ -14,7 +14,7 @@ const MainPage = ({ getRoles, isAuthenticated }) => {
 
   return (
     <Fragment>
-      <h2>Main page</h2>
+      <h2>꽃길만걷자</h2>
     </Fragment>
   );
 };
