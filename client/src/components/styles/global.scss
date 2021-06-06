@@ -11,6 +11,14 @@ img {
 .wrapper {
   width: 90%;
   margin: 0 auto;
+
+  .background {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    z-index: -1;
+  }
 }
 
 h1 {

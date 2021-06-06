@@ -13,6 +13,7 @@ import SideEffects from "./components/layout/SideEffects/index.js";
 import store from "./store";
 import { Provider } from "react-redux";
 import { loadUser } from "./actions/auth";
+import background from "./images/flowers.png";
 
 const App = () => {
   useEffect(() => {
@@ -33,6 +34,9 @@ const App = () => {
             <PrivateRoute exact path="/foods" component={Foods} />
             <PrivateRoute exact path="/sideEffects" component={SideEffects} />
           </Switch>
+          <div className="background">
+            <img src={background} />
+          </div>
         </div>
       </Router>
     </Provider>
