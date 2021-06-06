@@ -2,8 +2,7 @@
   position: fixed;
   left: 3rem;
   top: 3rem;
-  border: 2px solid blue;
-  width: 13.5rem;
+  width: 20rem;
   height: 6rem;
   border-radius: 1rem;
   font-size: 2rem;
@@ -25,8 +24,8 @@
   }
 
   button {
-    width: 39%;
-    height: 5rem;
+    width: 60%;
+    height: 5.5rem;
     position: absolute;
     right: 1rem;
     z-index: 1;
@@ -36,7 +35,7 @@
     transition: right 0.5s;
 
     &.en {
-      right: 7.5rem;
+      right: 8rem;
     }
   }
 }
