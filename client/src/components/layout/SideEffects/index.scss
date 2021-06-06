@@ -1,3 +1,5 @@
+@import "../../styles/mediaQueries.scss";
+
 .sideEffectsContainer {
   form {
     display: flex;
@@ -13,13 +15,13 @@
     }
 
     input {
-      width: 220px;
+      width: 230px;
       padding-left: 1.5rem;
       border-radius: 1rem 0 0 1rem;
     }
 
     button {
-      width: 100px;
+      width: 90px;
       background: none;
       border-radius: 0 1rem 1rem 0;
       cursor: pointer;
@@ -47,6 +49,10 @@
       span {
         margin-bottom: 2rem;
         line-height: 3rem;
+
+        @include mq450 {
+          margin-bottom: 1rem;
+        }
       }
 
       .buttonsContainer {
@@ -59,8 +65,22 @@
           width: 30%;
           height: 3.5rem;
           cursor: pointer;
+
+          @include mq450 {
+            width: 25%;
+            height: 3rem;
+          }
         }
       }
+
+      @include mq450 {
+        margin-bottom: 3rem;
+        padding: 1.5rem;
+      }
+    }
+
+    @include mq450 {
+      margin-top: 3rem;
     }
   }
 }
