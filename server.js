@@ -11,6 +11,7 @@ app.use(express.json({ extended: false }));
 app.use("/auth", require("./routes/auth"));
 app.use("/users", require("./routes/users"));
 app.use("/sideEffects", require("./routes/sideEffects"));
+app.use("/chemotherapies", require("./routes/chemotherapies"));
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));

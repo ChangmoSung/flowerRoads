@@ -15,6 +15,8 @@ import {
   ADD_CHEMOTHERAPY_ERROR,
   DELETE_CHEMOTHERAPY,
   DELETE_CHEMOTHERAPY_ERROR,
+  UPDATE_CHEMOTHERAPY,
+  UPDATE_CHEMOTHERAPY_ERROR,
   SIDE_EFFECTS_BY_USER_LOADED,
   SIDE_EFFECTS_BY_USER_LOADED_ERROR,
   ADD_SIDE_EFFECT_BY_USER,
@@ -156,6 +158,33 @@ export const deleteChemotherapy = (chemotherapyId = "") => async (dispatch) => {
       payload: { msg: err.response.statusText, status: err.response.status },
     });
     dispatch(setAlert({ msg: "chemotherapyNotDeleted", alertType: "danger" }));
+  }
+};
+
+export const updateChemotherapy = (chemotherapyInfo = {}) => async (
+  dispatch
+) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const body = JSON.stringify(chemotherapyInfo);
+
+  try {
+    const res = await axios.put("/users/updateChemotherapy", body, config);
+
+    dispatch({
+      type: UPDATE_CHEMOTHERAPY,
+      payload: res.data,
+    });
+    dispatch(setAlert({ msg: "chemotherapyUpdated", alertType: "success" }));
+  } catch (err) {
+    dispatch({
+      type: UPDATE_CHEMOTHERAPY_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+    dispatch(setAlert({ msg: "chemotherapyNotUpdated", alertType: "danger" }));
   }
 };
 

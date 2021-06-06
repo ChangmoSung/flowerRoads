@@ -13,6 +13,8 @@ import {
   ADD_CHEMOTHERAPY_ERROR,
   DELETE_CHEMOTHERAPY,
   DELETE_CHEMOTHERAPY_ERROR,
+  UPDATE_CHEMOTHERAPY,
+  UPDATE_CHEMOTHERAPY_ERROR,
   SIDE_EFFECTS_BY_USER_LOADED,
   SIDE_EFFECTS_BY_USER_LOADED_ERROR,
   ADD_SIDE_EFFECT_BY_USER,
@@ -20,7 +22,6 @@ import {
   DELETE_SIDE_EFFECT_BY_USER,
   DELETE_SIDE_EFFECT_BY_USER_ERROR,
 } from "../actions/types";
-import { deleteChemotherapy } from "../actions/users";
 
 const initialState = {
   roles: [],
@@ -52,6 +53,7 @@ export default function (state = initialState, action) {
     case CHEMOTHERAPY_LOADED:
     case ADD_CHEMOTHERAPY:
     case DELETE_CHEMOTHERAPY:
+    case UPDATE_CHEMOTHERAPY:
       return {
         ...state,
         chemotherapyList: payload,
@@ -75,6 +77,7 @@ export default function (state = initialState, action) {
     case CHEMOTHERAPY_LOADED_ERROR:
     case ADD_CHEMOTHERAPY_ERROR:
     case DELETE_CHEMOTHERAPY_ERROR:
+    case UPDATE_CHEMOTHERAPY_ERROR:
       return {
         ...state,
         error: payload,

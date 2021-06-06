@@ -30,52 +30,44 @@
 
   .chemotherapies {
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
     margin-top: 5rem;
 
     .chemotherapy {
-      width: 150px;
-      height: 150px;
+      width: 320px;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
       margin-bottom: 5rem;
+      padding: 1.5rem;
       font-size: 2.2rem;
       border: 2px solid blue;
       border-radius: 1rem;
       background: white;
 
       span {
-        margin-bottom: 2rem;
-
-        @include mq450 {
-          margin-bottom: 1rem;
-        }
+        display: block;
+        width: 50%;
+        line-height: 3rem;
       }
 
       .buttonsContainer {
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
+        width: 50%;
 
         button {
           background: none;
           border: none;
-          width: 50%;
+          width: 45%;
           height: 3.5rem;
           cursor: pointer;
-
-          @include mq450 {
-            width: 45%;
-            height: 3rem;
-          }
         }
       }
 
       @include mq450 {
         margin-bottom: 3rem;
-        height: 100px;
       }
     }
 
