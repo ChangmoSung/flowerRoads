@@ -1,0 +1,86 @@
+@import "../../styles/mediaQueries.scss";
+
+.chemotherapyContainer {
+  form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 65px;
+    font-size: 2.2rem;
+
+    input,
+    button {
+      height: 100%;
+      border: 2px solid blue;
+    }
+
+    input {
+      width: 230px;
+      padding-left: 1.5rem;
+      border-radius: 1rem 0 0 1rem;
+    }
+
+    button {
+      width: 90px;
+      background: none;
+      border-radius: 0 1rem 1rem 0;
+      cursor: pointer;
+    }
+  }
+
+  .chemotherapies {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 5rem;
+
+    .chemotherapy {
+      width: 150px;
+      height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 5rem;
+      font-size: 2.2rem;
+      border: 2px solid blue;
+      border-radius: 1rem;
+      background: white;
+
+      span {
+        margin-bottom: 2rem;
+
+        @include mq450 {
+          margin-bottom: 1rem;
+        }
+      }
+
+      .buttonsContainer {
+        display: flex;
+        justify-content: space-around;
+
+        button {
+          background: none;
+          border: none;
+          width: 50%;
+          height: 3.5rem;
+          cursor: pointer;
+
+          @include mq450 {
+            width: 45%;
+            height: 3rem;
+          }
+        }
+      }
+
+      @include mq450 {
+        margin-bottom: 3rem;
+        height: 100px;
+      }
+    }
+
+    @include mq450 {
+      margin-top: 3rem;
+    }
+  }
+}

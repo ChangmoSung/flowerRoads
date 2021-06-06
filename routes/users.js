@@ -202,6 +202,104 @@ router.delete("/deleteFood/:foodId", auth, async (req, res) => {
   }
 });
 
+// @route GET /users/getChemotherapyList
+// @desc Get chemotherapy list
+// @access Private
+router.get("/getChemotherapyList", auth, async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    const user = await Users.findOne({ _id: req.user.id });
+    if (!user) {
+      return res.status(400).json({ errors: [{ msg: "No matching user" }] });
+    }
+    res.send(user.chemotherapyList);
+  } catch ({ message = "" }) {
+    console.error(message);
+    res.status(500).send(`Server error - ${message}`);
+  }
+});
+
+// @route PUT /users/addChemotherapy
+// @desc Add chemotherapy
+// @access Private
+router.put(
+  "/addChemotherapy",
+  [auth, check("chemotherapy", "Provide a chemotherapy").not().isEmpty()],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { _id, chemotherapy } = req.body;
+
+    try {
+      const user = await Users.findOne({ _id: req.user.id });
+      if (!user) {
+        return res.status(400).json({ errors: [{ msg: "No matching user" }] });
+      }
+
+      const chemotherapyAlreadyOnTheList = user.chemotherapyList.some(
+        ({ chemotherapy: chemotherapyOnTheList }) =>
+          chemotherapyOnTheList === chemotherapy
+      );
+      if (chemotherapyAlreadyOnTheList) {
+        return res.status(400).json({
+          errors: [{ msg: "You already have this chemotherapy on your list" }],
+        });
+      }
+
+      user.chemotherapyList.push({
+        _id,
+        chemotherapy,
+      });
+
+      await user.save();
+      res.send(user.chemotherapyList);
+    } catch ({ message = "" }) {
+      console.error(message);
+      res.status(500).send(`Server error - ${message}`);
+    }
+  }
+);
+
+// @route DELETE /users/deleteChemotherapy/:chemotherapyId
+// @desc Delete chemotherapy
+// @access Private
+router.delete("/deleteChemotherapy/:chemotherapyId", auth, async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) res.status(400).json({ errors: errors.array() });
+
+  try {
+    const user = await Users.findOne({ _id: req.user.id });
+    if (!user) res.status(400).json({ errors: [{ msg: "No matching user" }] });
+
+    const chemotherapyId = req.params.chemotherapyId;
+    const chemotherapyAlreadyOnTheList = user.chemotherapyList.some(
+      ({ _id }) => _id === chemotherapyId
+    );
+    if (!chemotherapyAlreadyOnTheList) {
+      return res.status(400).json({
+        errors: [{ msg: "You don't have this chemotherapy on your list" }],
+      });
+    }
+
+    const removeIndex = user.chemotherapyList
+      .map(({ _id }) => _id)
+      .indexOf(chemotherapyId);
+    user.chemotherapyList.splice(removeIndex, 1);
+
+    await user.save();
+    res.send(user.chemotherapyList);
+  } catch ({ message = "" }) {
+    console.error(message);
+    res.status(500).send(`Server error - ${message}`);
+  }
+});
+
 // @route GET /users/getSideEffectsListByUser
 // @desc Get side effects list
 // @access Private
