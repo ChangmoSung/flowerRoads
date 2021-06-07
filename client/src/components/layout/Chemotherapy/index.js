@@ -9,7 +9,7 @@ import {
   getChemotherapyList,
   addChemotherapy,
   deleteChemotherapy,
-} from "../../../actions/users";
+} from "../../../actions/chemotherapies";
 import eraser from "../../../images/eraser.png";
 
 const Chemotherapy = ({
@@ -20,8 +20,12 @@ const Chemotherapy = ({
   isAuthenticated,
 }) => {
   const chemotherapyInput = useRef(null);
-  const [formData, setFormData] = useState({ chemotherapy: "" });
-  const { chemotherapy } = formData;
+  const aboutChemotherapyInput = useRef(null);
+  const [formData, setFormData] = useState({
+    chemotherapy: "",
+    aboutChemotherapy: "",
+  });
+  const { chemotherapy, aboutChemotherapy } = formData;
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -29,7 +33,8 @@ const Chemotherapy = ({
   const onSubmit = (e) => {
     e.preventDefault();
     chemotherapyInput.current.value = "";
-    addChemotherapy({ _id: `${chemotherapy}-${uuidv4()}`, chemotherapy });
+    aboutChemotherapyInput.current.value = "";
+    addChemotherapy({ chemotherapy, aboutChemotherapy });
   };
 
   useEffect(() => {
@@ -53,26 +58,37 @@ const Chemotherapy = ({
           aria-label="Chemotherapy"
           required
         />
+        <input
+          ref={aboutChemotherapyInput}
+          type="text"
+          name="aboutChemotherapy"
+          onChange={onChange}
+          placeholder={t("aboutChemotherapy")}
+          aria-label="About chemotherapy"
+          required
+        />
         <button>{t("add")}</button>
       </form>
       <div className="chemotherapies">
         {chemotherapyList.length > 0 &&
-          chemotherapyList.map(({ _id, chemotherapy }, i) => (
-            <div key={i} className="chemotherapy">
-              <span>{chemotherapy}</span>
-              <div className="buttonsContainer">
-                <button
-                  onClick={() =>
-                    window.confirm(
-                      t("wouldYouLikeToDeleteChemotherapy", { chemotherapy })
-                    ) && deleteChemotherapy(_id)
-                  }
-                >
-                  <img src={eraser} />
-                </button>
+          chemotherapyList.map(
+            ({ _id, chemotherapy, aboutChemotherapy }, i) => (
+              <div key={i} className="chemotherapy">
+                <span>{chemotherapy}</span>
+                <div className="buttonsContainer">
+                  <button
+                    onClick={() =>
+                      window.confirm(
+                        t("wouldYouLikeToDeleteChemotherapy", { chemotherapy })
+                      ) && deleteChemotherapy(_id)
+                    }
+                  >
+                    <img src={eraser} />
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            )
+          )}
       </div>
     </div>
   );
@@ -87,7 +103,7 @@ Chemotherapy.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  chemotherapyList: state.users.chemotherapyList,
+  chemotherapyList: state.chemotherapies.chemotherapyList,
   isAuthenticated: state.auth.isAuthenticated,
 });
 

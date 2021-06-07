@@ -26,9 +26,6 @@ module.exports = Users = mongoose.model(
     foodsList: {
       type: Array,
     },
-    chemotherapyList: {
-      type: Array,
-    },
     sideEffectsListByUser: {
       type: Array,
     },

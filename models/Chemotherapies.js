@@ -8,6 +8,7 @@ module.exports = Chemotherapies = mongoose.model(
     },
     chemotherapy: {
       type: String,
+      required: true,
     },
     aboutChemotherapy: {
       type: String,
