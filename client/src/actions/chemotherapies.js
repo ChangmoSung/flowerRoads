@@ -11,9 +11,9 @@ import {
   UPDATE_CHEMOTHERAPY_ERROR,
 } from "./types.js";
 
-export const getChemotherapyList = () => async (dispatch) => {
+export const getChemotherapies = () => async (dispatch) => {
   try {
-    const res = await axios.get("/chemotherapies/getChemotherapyList");
+    const res = await axios.get("/chemotherapies/getChemotherapies");
 
     dispatch({
       type: CHEMOTHERAPY_LOADED,

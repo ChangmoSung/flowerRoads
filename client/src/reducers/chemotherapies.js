@@ -10,7 +10,7 @@ import {
 } from "../actions/types";
 
 const initialState = {
-  chemotherapyList: [],
+  chemotherapies: [],
   loading: true,
   error: {},
 };
@@ -25,7 +25,7 @@ export default function (state = initialState, action) {
     case UPDATE_CHEMOTHERAPY:
       return {
         ...state,
-        chemotherapyList: payload,
+        chemotherapies: payload,
         loading: false,
       };
     case CHEMOTHERAPY_LOADED_ERROR:

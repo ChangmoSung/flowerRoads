@@ -15,7 +15,10 @@ router.get("/getChemotherapies", auth, async (req, res) => {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const chemotherapies = await Chemotherapies.find({ user: req.user.id });
+    const chemotherapies = await Chemotherapies.find({
+      active: true,
+    });
+
     res.send(chemotherapies);
   } catch ({ message = "" }) {
     console.error(message);
@@ -66,10 +69,11 @@ router.delete("/deleteChemotherapy/:chemotherapyId", auth, async (req, res) => {
   try {
     await Chemotherapies.findOneAndRemove({
       _id: req.params.chemotherapyId,
-      user: req.user.id,
     });
 
-    const chemotherapies = await Chemotherapies.find({ user: req.user.id });
+    const chemotherapies = await Chemotherapies.find({
+      active: true,
+    });
     res.json(chemotherapies);
   } catch (err) {
     console.error(err.message);
