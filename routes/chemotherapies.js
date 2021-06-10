@@ -56,7 +56,7 @@ router.put(
 
       await chemotherapyToAdd.save();
 
-      const chemotherapies = await Chemotherapies.find();
+      const chemotherapies = await Chemotherapies.find({ active: true });
       res.send(chemotherapies);
     } catch ({ message = "" }) {
       console.error(message);
@@ -80,5 +80,40 @@ router.delete("/deleteChemotherapy/:chemotherapyId", auth, async (req, res) => {
     res.status(500).send("Server error");
   }
 });
+
+router.put(
+  "/updateChemotherapy",
+  [auth, check("_id", "Provide the id of the chemotherapy").not().isEmpty()],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+      const { _id, chemotherapy, aboutChemotherapy } = req.body;
+
+      const chemotherapyToUpdate = await Chemotherapies.findOne({ _id });
+      if (!chemotherapyToUpdate) {
+        return res
+          .status(400)
+          .json({ errors: [{ msg: "Chemotherapy doesn't exist" }] });
+      }
+
+      chemotherapyToUpdate.chemotherapy = chemotherapy;
+      chemotherapyToUpdate.aboutChemotherapy = aboutChemotherapy;
+
+      await chemotherapyToUpdate.save();
+
+      const chemotherapies = await Chemotherapies.find({
+        active: true,
+      });
+      res.json({ chemotherapies, updatedChemotherapy: chemotherapyToUpdate });
+    } catch ({ message = "" }) {
+      console.error(message);
+      res.status(500).send(`Server error - ${message}`);
+    }
+  }
+);
 
 module.exports = router;

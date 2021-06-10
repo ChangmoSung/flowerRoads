@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { Fragment, useState, useEffect, useRef } from "react";
 import "./index.scss";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
@@ -9,6 +9,7 @@ import {
   addChemotherapy,
   deleteChemotherapy,
 } from "../../../actions/chemotherapies";
+import ChemotherapyModal from "./ChemotherapyModal/index.js";
 import eraser from "../../../images/eraser.png";
 
 const Chemotherapy = ({
@@ -21,6 +22,16 @@ const Chemotherapy = ({
 }) => {
   const chemotherapyInput = useRef(null);
   const aboutChemotherapyInput = useRef(null);
+  const [modalInfo, setModalInfo] = useState({
+    chemotherapyIdForModal: "",
+    chemotherapyForModal: "",
+    aboutChemotherapyForModal: "",
+  });
+  const {
+    chemotherapyIdForModal,
+    chemotherapyForModal,
+    aboutChemotherapyForModal,
+  } = modalInfo;
   const [formData, setFormData] = useState({
     chemotherapy: "",
     aboutChemotherapy: "",
@@ -50,48 +61,74 @@ const Chemotherapy = ({
   return (
     <div className="chemotherapyContainer">
       <h2>{t("chemotherapies")}</h2>
-      {admin && (
-        <form onSubmit={onSubmit}>
-          <input
-            ref={chemotherapyInput}
-            type="text"
-            name="chemotherapy"
-            onChange={onChange}
-            placeholder={t("chemotherapy")}
-            aria-label="Chemotherapy"
-            required
-          />
-          <input
-            ref={aboutChemotherapyInput}
-            type="text"
-            name="aboutChemotherapy"
-            onChange={onChange}
-            placeholder={t("aboutChemotherapy")}
-            aria-label="About chemotherapy"
-            required
-          />
-          <button>{t("add")}</button>
-        </form>
+      {chemotherapyIdForModal ? (
+        <ChemotherapyModal
+          chemotherapyIdForModal={chemotherapyIdForModal}
+          chemotherapyForModal={chemotherapyForModal}
+          aboutChemotherapyForModal={aboutChemotherapyForModal}
+          setModalInfo={setModalInfo}
+        />
+      ) : (
+        <Fragment>
+          {admin && (
+            <form onSubmit={onSubmit}>
+              <input
+                ref={chemotherapyInput}
+                type="text"
+                name="chemotherapy"
+                onChange={onChange}
+                placeholder={t("chemotherapy")}
+                aria-label="Chemotherapy"
+                required
+              />
+              <input
+                ref={aboutChemotherapyInput}
+                type="text"
+                name="aboutChemotherapy"
+                onChange={onChange}
+                placeholder={t("aboutChemotherapy")}
+                aria-label="About chemotherapy"
+                required
+              />
+              <button>{t("add")}</button>
+            </form>
+          )}
+          <div className="chemotherapies">
+            {chemotherapies.length > 0 &&
+              chemotherapies.map(
+                ({ _id, chemotherapy, aboutChemotherapy }, i) => (
+                  <div key={i} className="chemotherapy">
+                    <span>{chemotherapy}</span>
+                    <div className="buttonsContainer">
+                      <button
+                        onClick={() =>
+                          window.confirm(
+                            t("wouldYouLikeToDeleteChemotherapy", {
+                              chemotherapy,
+                            })
+                          ) && deleteChemotherapy(_id)
+                        }
+                      >
+                        <img src={eraser} />
+                      </button>
+                      <button
+                        onClick={() =>
+                          setModalInfo({
+                            chemotherapyIdForModal: _id,
+                            chemotherapyForModal: chemotherapy,
+                            aboutChemotherapyForModal: aboutChemotherapy,
+                          })
+                        }
+                      >
+                        열기
+                      </button>
+                    </div>
+                  </div>
+                )
+              )}
+          </div>
+        </Fragment>
       )}
-      <div className="chemotherapies">
-        {chemotherapies.length > 0 &&
-          chemotherapies.map(({ _id, chemotherapy, aboutChemotherapy }, i) => (
-            <div key={i} className="chemotherapy">
-              <span>{chemotherapy}</span>
-              <div className="buttonsContainer">
-                <button
-                  onClick={() =>
-                    window.confirm(
-                      t("wouldYouLikeToDeleteChemotherapy", { chemotherapy })
-                    ) && deleteChemotherapy(_id)
-                  }
-                >
-                  <img src={eraser} />
-                </button>
-              </div>
-            </div>
-          ))}
-      </div>
     </div>
   );
 };

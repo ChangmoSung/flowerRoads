@@ -11,6 +11,7 @@ import {
 
 const initialState = {
   chemotherapies: [],
+  updatedChemotherapy: {},
   loading: true,
   error: {},
 };
@@ -22,10 +23,16 @@ export default function (state = initialState, action) {
     case CHEMOTHERAPY_LOADED:
     case ADD_CHEMOTHERAPY:
     case DELETE_CHEMOTHERAPY:
-    case UPDATE_CHEMOTHERAPY:
       return {
         ...state,
         chemotherapies: payload,
+        loading: false,
+      };
+    case UPDATE_CHEMOTHERAPY:
+      return {
+        ...state,
+        chemotherapies: payload.chemotherapies,
+        updatedChemotherapy: payload.updatedChemotherapy,
         loading: false,
       };
     case CHEMOTHERAPY_LOADED_ERROR:
