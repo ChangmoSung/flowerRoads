@@ -7,6 +7,10 @@ module.exports = UserData = mongoose.model(
       type: String,
       required: true,
     },
+    name: {
+      type: String,
+      required: true,
+    },
     foods: [
       {
         food: {
