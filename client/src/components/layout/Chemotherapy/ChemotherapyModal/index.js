@@ -5,8 +5,13 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 import { updateChemotherapy } from "../../../../actions/chemotherapies";
+import update from "../../../../images/update.png";
+import close from "../../../../images/close.png";
+import back from "../../../../images/back.png";
+import confirm from "../../../../images/confirm.png";
 
 const ChemotherapyModal = ({
+  roles,
   chemotherapyIdForModal,
   chemotherapyForModal,
   aboutChemotherapyForModal,
@@ -36,13 +41,14 @@ const ChemotherapyModal = ({
   };
 
   const updated = !!updatedChemotherapy._id;
+  const admin = roles.includes("admin");
 
   const { t } = useTranslation();
 
   if (!isAuthenticated) return <Redirect to="/" />;
 
   return (
-    <div>
+    <div className="chemotherapyModal">
       {formVisible ? (
         <form onSubmit={onSubmit}>
           <input
@@ -61,35 +67,45 @@ const ChemotherapyModal = ({
             aria-label="About chemotherapy"
             required
           />
-          <button>{t("update")}</button>
-          <button onClick={() => toggleForm(false)}>뒤로</button>
+          <div className="buttonsContainer">
+            <button>
+              <img src={confirm} />
+            </button>
+            <button onClick={() => toggleForm(false)}>
+              <img src={back} />
+            </button>
+          </div>
         </form>
       ) : (
         <Fragment>
-          <Fragment>
-            <span>
-              {updated
-                ? updatedChemotherapy.chemotherapy
-                : chemotherapyForModal}
-            </span>
-            <span>
-              {updated
-                ? updatedChemotherapy.aboutChemotherapy
-                : aboutChemotherapyForModal}
-            </span>
-            <button onClick={() => toggleForm(true)}>{t("update")}</button>
-          </Fragment>
-          <button
-            onClick={() =>
-              setModalInfo({
-                chemotherapyIdForModal: "",
-                chemotherapyForModal: "",
-                aboutChemotherapyForModal: "",
-              })
-            }
-          >
-            닫기
-          </button>
+          <span>
+            {updated ? updatedChemotherapy.chemotherapy : chemotherapyForModal}
+          </span>
+          <div className="underline"></div>
+          <span>
+            {updated
+              ? updatedChemotherapy.aboutChemotherapy
+              : aboutChemotherapyForModal}
+          </span>
+          <div className="underline"></div>
+          <div className="buttonsContainer">
+            {admin && (
+              <button onClick={() => toggleForm(true)}>
+                <img src={update} />
+              </button>
+            )}
+            <button
+              onClick={() =>
+                setModalInfo({
+                  chemotherapyIdForModal: "",
+                  chemotherapyForModal: "",
+                  aboutChemotherapyForModal: "",
+                })
+              }
+            >
+              <img src={close} />
+            </button>
+          </div>
         </Fragment>
       )}
     </div>
@@ -97,6 +113,7 @@ const ChemotherapyModal = ({
 };
 
 ChemotherapyModal.propTypes = {
+  roles: PropTypes.array,
   updateChemotherapy: PropTypes.func.isRequired,
   chemotherapyIdForModal: PropTypes.string.isRequired,
   chemotherapyForModal: PropTypes.string.isRequired,
@@ -107,6 +124,7 @@ ChemotherapyModal.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
+  roles: state.users.roles,
   updatedChemotherapy: state.chemotherapies.updatedChemotherapy,
   isAuthenticated: state.auth.isAuthenticated,
 });

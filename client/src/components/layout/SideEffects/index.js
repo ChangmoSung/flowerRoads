@@ -15,7 +15,7 @@ import {
   addSideEffectByAdmin,
   deleteSideEffectByAdmin,
 } from "../../../actions/sideEffects";
-import eraser from "../../../images/eraser.png";
+import bin from "../../../images/bin.png";
 
 const SideEffects = ({
   roles,
@@ -109,7 +109,7 @@ const SideEffects = ({
                           ) && deleteSideEffectByAdmin(_id)
                         }
                       >
-                        <img src={eraser} />
+                        <img src={bin} />
                       </button>
                     </div>
                   )}
@@ -151,7 +151,7 @@ const SideEffects = ({
                         ) && deleteSideEffectByUser(_id)
                       }
                     >
-                      <img src={eraser} />
+                      <img src={bin} />
                     </button>
                   </div>
                 </div>

@@ -10,7 +10,8 @@ import {
   deleteChemotherapy,
 } from "../../../actions/chemotherapies";
 import ChemotherapyModal from "./ChemotherapyModal/index.js";
-import eraser from "../../../images/eraser.png";
+import bin from "../../../images/bin.png";
+import info from "../../../images/info.png";
 
 const Chemotherapy = ({
   roles,
@@ -100,17 +101,19 @@ const Chemotherapy = ({
                   <div key={i} className="chemotherapy">
                     <span>{chemotherapy}</span>
                     <div className="buttonsContainer">
-                      <button
-                        onClick={() =>
-                          window.confirm(
-                            t("wouldYouLikeToDeleteChemotherapy", {
-                              chemotherapy,
-                            })
-                          ) && deleteChemotherapy(_id)
-                        }
-                      >
-                        <img src={eraser} />
-                      </button>
+                      {admin && (
+                        <button
+                          onClick={() =>
+                            window.confirm(
+                              t("wouldYouLikeToDeleteChemotherapy", {
+                                chemotherapy,
+                              })
+                            ) && deleteChemotherapy(_id)
+                          }
+                        >
+                          <img src={bin} />
+                        </button>
+                      )}
                       <button
                         onClick={() =>
                           setModalInfo({
@@ -120,7 +123,7 @@ const Chemotherapy = ({
                           })
                         }
                       >
-                        열기
+                        <img src={info} />
                       </button>
                     </div>
                   </div>

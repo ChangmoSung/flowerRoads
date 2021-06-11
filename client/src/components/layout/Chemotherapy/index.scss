@@ -15,6 +15,7 @@
       border-radius: 1rem;
       padding: 1.5rem;
       width: 320px;
+      background: white;
     }
 
     input {
@@ -22,7 +23,6 @@
     }
 
     button {
-      background: none;
       cursor: pointer;
     }
   }
@@ -59,7 +59,7 @@
         button {
           background: none;
           border: none;
-          width: 70%;
+          width: 50%;
           height: 3.5rem;
           cursor: pointer;
         }

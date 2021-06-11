@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
 import { useTranslation } from "react-i18next";
 import { getFoodsList, addFood, deleteFood } from "../../../actions/users";
-import eraser from "../../../images/eraser.png";
+import bin from "../../../images/bin.png";
 
 const Foods = ({
   getFoodsList,
@@ -64,7 +64,7 @@ const Foods = ({
                     ) && deleteFood(_id)
                   }
                 >
-                  <img src={eraser} />
+                  <img src={bin} />
                 </button>
               </div>
             </div>
