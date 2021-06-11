@@ -47,12 +47,7 @@
       background: white;
 
       span {
-        margin-bottom: 2rem;
         line-height: 3rem;
-
-        @include mq450 {
-          margin-bottom: 1rem;
-        }
       }
 
       .buttonsContainer {
@@ -64,11 +59,13 @@
           border: none;
           width: 30%;
           height: 3.5rem;
+          margin-top: 2rem;
           cursor: pointer;
 
           @include mq450 {
             width: 25%;
             height: 3rem;
+            margin-top: 1rem;
           }
         }
       }
