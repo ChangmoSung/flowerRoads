@@ -7,6 +7,7 @@ const { check, validationResult } = require("express-validator");
 const auth = require("../middleware/auth");
 
 const Users = require("../models/Users");
+const UserData = require("../models/UserData");
 
 // @route POST /users
 // @desc Sign up user
@@ -45,12 +46,12 @@ router.post(
         email,
         password,
       });
-
       const salt = await bcrypt.genSalt(10);
-
       user.password = await bcrypt.hash(password, salt);
-
       await user.save();
+
+      const userData = new UserData({ user: user._id });
+      userData.save();
 
       const payload = {
         user: {
@@ -160,8 +161,12 @@ router.put(
         _id,
         foodName,
       });
-
       await user.save();
+
+      const userData = await UserData.findOne({ user: req.user.id });
+      userData?.foods.push({ food: foodName });
+      await userData?.save();
+
       res.send(user.foodsList);
     } catch ({ message = "" }) {
       console.error(message);
@@ -261,8 +266,13 @@ router.put(
         _id,
         sideEffectByUser,
       });
-
       await user.save();
+      console.log("working");
+
+      const userData = await UserData.findOne({ user: req.user.id });
+      userData?.sideEffects.push({ sideEffect: sideEffectByUser });
+      await userData?.save();
+
       res.send(user.sideEffectsListByUser);
     } catch ({ message = "" }) {
       console.error(message);

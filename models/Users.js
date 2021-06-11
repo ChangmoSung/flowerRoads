@@ -21,7 +21,8 @@ module.exports = Users = mongoose.model(
       required: true,
     },
     roles: {
-      type: Array,
+      type: [String],
+      default: ["user"],
     },
     foodsList: {
       type: Array,
