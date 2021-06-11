@@ -1,29 +1,29 @@
 .alertsList {
   position: absolute;
-  top: 1.5rem;
-  right: 0;
+  top: 1rem;
+  left: 0;
   z-index: 999;
 }
 
 .alert {
-  padding: 2rem 4rem;
-  color: #ffffff;
+  padding: 2rem 3rem;
+  color: white;
   font-size: 2rem;
   margin-bottom: 1.5rem;
 }
 
 .alert-success {
-  background: #00c851;
+  background: green;
 }
 
 .alert-danger {
-  background: #ff4444;
+  background: red;
 }
 
 .alert-info {
-  background: #33b5e5;
+  background: blue;
 }
 
 .alert-warning {
-  background: #ffbb33;
+  background: orange;
 }
