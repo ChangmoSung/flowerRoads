@@ -1,23 +1,26 @@
 .toggleNavButton {
   position: fixed;
   right: 2rem;
-  top: 3rem;
+  top: 2rem;
   background: none;
   border: none;
   width: 8rem;
-  height: 7rem;
+  height: 7.5rem;
   cursor: pointer;
 }
 
 nav {
   position: fixed;
   right: -35rem;
-  top: 10rem;
-  width: 100vw;
+  top: 11rem;
+  width: 20rem;
   height: 50rem;
-  padding: 0 3rem 3rem;
   transition: right 0.5s;
   background: white;
+  border-top: 2px solid blue;
+  border-left: 2px solid blue;
+  border-bottom: 2px solid blue;
+  border-radius: 1rem 0 0 1rem;
 
   &.show {
     right: 0;
@@ -38,8 +41,39 @@ nav {
     font-size: 1.8rem;
     height: 100%;
 
-    a {
-      text-decoration: none;
+    li {
+      width: calc(20rem - 2px);
+      height: 25%;
+      border-bottom: 2px solid green;
+
+      &:first-of-type {
+        border-radius: 0.8rem 0 0 0;
+      }
+
+      &:last-of-type {
+        border-radius: 0 0 0 0.8rem;
+        border-bottom: none;
+      }
+
+      &:hover {
+        background: blue;
+        opacity: 0.7;
+      }
+
+      a {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        padding-right: 3rem;
+        text-decoration: none;
+        color: black;
+
+        &:hover {
+          color: white;
+        }
+      }
     }
   }
 }
