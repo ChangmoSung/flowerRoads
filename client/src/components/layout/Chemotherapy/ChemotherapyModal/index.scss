@@ -1,15 +1,17 @@
+@import "../../../styles/variables.scss";
+
 .chemotherapyModal {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 3rem;
-  border: 2px solid blue;
+  border: 2px solid $blue;
   border-radius: 1rem;
   font-size: 2.2rem;
   background: white;
 
   form input {
-    border: 2px solid green;
+    border: 2px solid $green;
     width: 100%;
   }
 
@@ -30,7 +32,7 @@
   .underline {
     height: 2px;
     width: 100%;
-    background: green;
+    background: $green;
     margin: 3.5rem 0;
   }
 }
