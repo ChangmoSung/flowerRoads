@@ -1,12 +1,15 @@
-import React, { Fragment, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./index.scss";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 import { getRoles } from "../../../actions/users";
+import { signOut } from "../../../actions/auth";
 
-const MainPage = ({ getRoles, isAuthenticated }) => {
+
+const MainPage = ({ getRoles, isAuthenticated, signOut }) => {
   useEffect(() => {
     getRoles();
   }, [getRoles]);
@@ -16,15 +19,35 @@ const MainPage = ({ getRoles, isAuthenticated }) => {
   if (!isAuthenticated) return <Redirect to="/" />;
 
   return (
-    <Fragment>
+    <div className="mainPage">
       <h2>{t("title")}</h2>
-    </Fragment>
+      <ul>
+        <li>
+          <Link to='/foods'>{t("foods")}</Link>
+        </li>
+        <li>
+          <Link to='/sideEffects'>{t("sideEffects")}</Link>
+        </li>
+        <li>
+          <Link to="/chemotherapies">{t("chemotherapy")}</Link>
+        </li>
+        <li>
+          <Link to="/"
+              onClick={() => {
+                if (window.confirm(t("wouldYouLikeToSignOut"))) {
+                  signOut();
+                }
+              }}>{t("signOut")}</Link>
+        </li>
+      </ul>
+    </div>
   );
 };
 
 MainPage.propTypes = {
   getRoles: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
+  signOut: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -33,4 +56,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   getRoles,
+  signOut
 })(MainPage);

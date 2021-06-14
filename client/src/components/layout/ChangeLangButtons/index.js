@@ -18,7 +18,7 @@ const ChangeLangButtons = () => {
   const { t, i18n } = useTranslation();
 
   return (
-    <div className="changeLangButton">
+    <div className="changeLangButtons">
       <span className="korean">{lang === "kr" && t("korean")}</span>
       <button
         ref={changeLangButton}

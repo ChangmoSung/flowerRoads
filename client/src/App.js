@@ -9,7 +9,7 @@ import MainPage from "./components/layout/MainPage/index.js";
 import SignInPage from "./components/layout/SignInPage/index.js";
 import SignUpPage from "./components/layout/SignUpPage/index.js";
 import Foods from "./components/layout/Foods/index.js";
-import Chemotherapy from "./components/layout/Chemotherapy/index.js";
+import Chemotherapies from "./components/layout/Chemotherapies/index.js";
 import SideEffects from "./components/layout/SideEffects/index.js";
 import store from "./store";
 import { Provider } from "react-redux";
@@ -33,7 +33,7 @@ const App = () => {
             <Route exact path="/signUpPage" component={SignUpPage} />
             <PrivateRoute exact path="/mainPage" component={MainPage} />
             <PrivateRoute exact path="/foods" component={Foods} />
-            <PrivateRoute exact path="/chemotherapy" component={Chemotherapy} />
+            <PrivateRoute exact path="/chemotherapies" component={Chemotherapies} />
             <PrivateRoute exact path="/sideEffects" component={SideEffects} />
           </Switch>
           <div className="background">

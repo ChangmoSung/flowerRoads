@@ -35,7 +35,7 @@ const NavBar = ({ signOut }) => {
             </Link>
           </li>
           <li>
-            <Link to="/chemotherapy" onClick={() => toggleNav()}>
+            <Link to="/chemotherapies" onClick={() => toggleNav()}>
               {t("chemotherapy")}
             </Link>
           </li>

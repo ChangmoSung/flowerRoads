@@ -1,0 +1,49 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mediaQueries.scss";
+
+.mainPage {
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+    margin: 0 auto;
+    height: 39rem;
+    width: 50%;
+    border: 2px solid $blue;
+    border-radius: 1rem;
+    background: white;
+
+    li {
+      width: 100%;
+      height: 25%;
+      border-bottom: 2px solid $green;
+
+      &:last-of-type {
+        border-bottom: none;
+      }
+
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        font-size: 2rem;
+        text-decoration: none;
+        color: black;
+
+        &:hover {
+          background: $blue;
+          color: white;
+        }
+      }
+    }
+
+    @include mq450 {
+      width: 75%;
+    }
+  }
+}

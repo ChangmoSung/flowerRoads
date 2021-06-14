@@ -13,7 +13,7 @@ import ChemotherapyModal from "./ChemotherapyModal/index.js";
 import bin from "../../../images/bin.png";
 import info from "../../../images/info.png";
 
-const Chemotherapy = ({
+const Chemotherapies = ({
   roles,
   getChemotherapies,
   chemotherapies,
@@ -136,7 +136,7 @@ const Chemotherapy = ({
   );
 };
 
-Chemotherapy.propTypes = {
+Chemotherapies.propTypes = {
   roles: PropTypes.array,
   getChemotherapies: PropTypes.func.isRequired,
   chemotherapies: PropTypes.array,
@@ -155,4 +155,4 @@ export default connect(mapStateToProps, {
   getChemotherapies,
   addChemotherapy,
   deleteChemotherapy,
-})(Chemotherapy);
+})(Chemotherapies);
