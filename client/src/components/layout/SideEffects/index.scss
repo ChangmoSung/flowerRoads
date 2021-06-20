@@ -35,13 +35,14 @@
 
   .sideEffects {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
     margin-top: 3rem;
 
     .sideEffect {
       width: 57rem;
       display: flex;
+      justify-content: space-between;
       align-items: center;
       margin-bottom: 3rem;
       padding: 1.5rem;
@@ -78,10 +79,15 @@
           height: 5rem;
           cursor: pointer;
         }
+
+        @include mq450 {
+          width: 15rem;
+        }
       }
 
       @include mq450 {
         width: 32rem;
+        padding: 1rem;
       }
     }
   }

@@ -42,6 +42,7 @@
     .method {
       width: 57rem;
       display: flex;
+      justify-content: space-between;
       align-items: center;
       margin-bottom: 3rem;
       padding: 1.5rem;
@@ -77,6 +78,10 @@
           border: none;
           height: 5rem;
           cursor: pointer;
+        }
+
+        @include mq450 {
+          width: 15rem;
         }
       }
 

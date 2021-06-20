@@ -15,16 +15,26 @@
       border: 2px solid $blue;
       border-radius: 1rem;
       padding: 1.5rem;
-      width: 32rem;
       background: white;
     }
 
     input {
+      width: 57rem;
       margin-bottom: 3rem;
+
+      @include mq450 {
+        width: 32rem;
+      }
     }
 
     button {
+      width: 15rem;
       cursor: pointer;
+
+      &:hover {
+        background: $blue;
+        color: white;
+      }
     }
   }
 
@@ -35,11 +45,11 @@
     margin-top: 3rem;
 
     .chemotherapy {
-      width: 32rem;
+      width: 57rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 5rem;
+      margin-bottom: 3rem;
       padding: 1.5rem;
       font-size: 2.2rem;
       border: 2px solid $green;
@@ -47,27 +57,43 @@
       background: white;
 
       span {
-        display: block;
-        width: 70%;
+        width: 39rem;
         line-height: 3rem;
+
+        &.fullWidth {
+          width: 52rem;
+
+          @include mq450 {
+            width: 27rem;
+          }
+        }
+
+        @include mq450 {
+          width: 22rem;
+        }
       }
 
       .buttonsContainer {
         display: flex;
         justify-content: flex-end;
-        width: 30%;
+        width: 18rem;
 
         button {
           background: none;
           border: none;
-          width: 50%;
+          width: 5rem;
           height: 3.5rem;
           cursor: pointer;
+        }
+
+        @include mq450 {
+          width: 10rem;
         }
       }
 
       @include mq450 {
-        margin-bottom: 3rem;
+        width: 32rem;
+        padding: 1rem;
       }
     }
   }
