@@ -1,3 +1,5 @@
+@import "../../styles/mediaQueries.scss";
+
 .changeLangButtons {
   position: fixed;
   left: 2rem;
@@ -36,6 +38,14 @@
 
     &.en {
       right: 7.5rem;
+
+      @include mq450 {
+        right: 7rem;
+      }
+    }
+
+    @include mq450 {
+      right: 2rem;
     }
   }
 }

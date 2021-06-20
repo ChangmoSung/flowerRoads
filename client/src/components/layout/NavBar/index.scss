@@ -15,7 +15,7 @@ nav {
   position: fixed;
   right: -35rem;
   top: 11rem;
-  width: 20rem;
+  width: 27rem;
   height: 50rem;
   transition: right 0.5s;
   background: white;
@@ -44,7 +44,7 @@ nav {
     height: 100%;
 
     li {
-      width: calc(20rem - 2px);
+      width: calc(27rem - 2px);
       height: 20%;
       border-bottom: 2px solid $green;
 
