@@ -66,7 +66,7 @@ const MethodsOfPrevention = ({
             {methodsOfPrevention.length > 0 &&
               methodsOfPrevention.map(({ _id, method }, i) => (
                 <div key={i} className="method">
-                  <span>{method}</span>
+                  <span className={!admin && 'fullWidth'}>{method}</span>
                   {admin && (
                     <div className="buttonsContainer">
                       <button

@@ -16,13 +16,17 @@
     }
 
     input {
-      width: 23rem;
+      width: 50rem;
       padding-left: 1.5rem;
       border-radius: 1rem 0 0 1rem;
+
+      @include mq450 {
+        width: 25rem;
+      }
     }
 
     button {
-      width: 9rem;
+      width: 7rem;
       background: none;
       border-radius: 0 1rem 1rem 0;
       cursor: pointer;
@@ -33,52 +37,52 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin-top: 5rem;
+    margin-top: 3rem;
 
     .sideEffect {
-      width: 32rem;
+      width: 57rem;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      margin-bottom: 5rem;
-      padding: 2rem;
+      margin-bottom: 3rem;
+      padding: 1.5rem;
       font-size: 2.2rem;
       border: 2px solid $blue;
       border-radius: 1rem;
       background: white;
 
       span {
+        width: 50rem;
         line-height: 3rem;
+
+        &.fullWidth {
+          width: 57rem;
+
+          @include mq450 {
+            width: 32rem;
+          }
+        }
+
+        @include mq450 {
+          width: 25rem;
+        }
       }
 
       .buttonsContainer {
+        width: 7rem;
         display: flex;
-        justify-content: space-around;
+        align-items: center;
 
         button {
           background: none;
           border: none;
-          width: 30%;
-          height: 3.5rem;
-          margin-top: 2rem;
+          height: 5rem;
           cursor: pointer;
-
-          @include mq450 {
-            width: 25%;
-            height: 3rem;
-            margin-top: 1rem;
-          }
         }
       }
 
       @include mq450 {
-        margin-bottom: 3rem;
-        padding: 1.5rem;
+        width: 32rem;
       }
-    }
-
-    @include mq450 {
-      margin-top: 3rem;
     }
   }
 }
