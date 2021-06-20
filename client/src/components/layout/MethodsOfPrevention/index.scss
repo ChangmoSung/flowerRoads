@@ -6,7 +6,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 65px;
+    height: 6.5rem;
     font-size: 2.2rem;
 
     input,
@@ -16,13 +16,17 @@
     }
 
     input {
-      width: 230px;
+      width: 50rem;
       padding-left: 1.5rem;
       border-radius: 1rem 0 0 1rem;
+
+      @include mq450 {
+        width: 25rem;
+      }
     }
 
     button {
-      width: 90px;
+      width: 7rem;
       background: white;
       border-radius: 0 1rem 1rem 0;
       cursor: pointer;
@@ -31,12 +35,12 @@
 
   .methodsOfPrevention {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
     margin-top: 5rem;
 
     .method {
-      width: 320px;
+      width: 57rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -48,12 +52,17 @@
       background: white;
 
       span {
-        width: 250px;
+        width: 50rem;
         line-height: 3rem;
+
+        @include mq450 {
+          margin-top: 1rem;
+          width: 25rem;
+        }
       }
 
       .buttonsContainer {
-        width: 70px;
+        width: 7rem;
         display: flex;
         align-items: center;
 
@@ -62,15 +71,13 @@
           border: none;
           height: 5rem;
           cursor: pointer;
-
-          @include mq450 {
-            margin-top: 1rem;
-          }
         }
       }
 
       @include mq450 {
+        width: 32rem;
         margin-bottom: 3rem;
+        padding: 1rem;
       }
     }
 
