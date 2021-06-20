@@ -23,6 +23,9 @@ const MainPage = ({ getRoles, isAuthenticated, signOut }) => {
       <h2>{t("title")}</h2>
       <ul>
         <li>
+          <Link to='/methodsOfPrevention'>{t("methodsOfPrevention")}</Link>
+        </li>
+        <li>
           <Link to='/foods'>{t("foods")}</Link>
         </li>
         <li>

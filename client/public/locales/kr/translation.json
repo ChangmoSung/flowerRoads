@@ -46,5 +46,12 @@
   "sideEffectAdded": "부작용을 추가 하였습니다",
   "sideEffectNotAdded": "부작용이 추가되지 않았습니다",
   "sideEffectDeleted": "부작용이 사라졌습니다",
-  "sideEffectNotDeleted": "부작용이 사라지지 않았습니다"
+  "sideEffectNotDeleted": "부작용이 사라지지 않았습니다",
+  "methodsOfPrevention": "예방법",
+  "enterMethod": "예방법을 입력하시오",
+  "wouldYouLikeToDeleteMethod": "예방법을 지우시겠습니까?",
+  "methodAdded": "예방법이 추가 되었습니다",
+  "methodNotAdded": "예방법이 추가되지 않았습니다",
+  "methodDeleted": "예방법을 지웠습니다",
+  "methodNotDeleted": "예방법이 지워지지 않았습니다"
 }

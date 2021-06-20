@@ -25,6 +25,11 @@ const NavBar = ({ signOut }) => {
       <nav className="hidden" ref={navEl}>
         <ul>
           <li>
+            <Link to="methodsOfprevention" onClick={() => toggleNav()}>
+              {t("methodsOfPrevention")}
+            </Link>
+          </li>
+          <li>
             <Link to="/foods" onClick={() => toggleNav()}>
               {t("foods")}
             </Link>

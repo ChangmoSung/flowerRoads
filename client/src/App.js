@@ -11,6 +11,7 @@ import SignUpPage from "./components/layout/SignUpPage/index.js";
 import Foods from "./components/layout/Foods/index.js";
 import Chemotherapies from "./components/layout/Chemotherapies/index.js";
 import SideEffects from "./components/layout/SideEffects/index.js";
+import MethodsOfPrevention from "./components/layout/MethodsOfPrevention/index.js";
 import store from "./store";
 import { Provider } from "react-redux";
 import { loadUser } from "./actions/auth";
@@ -35,6 +36,7 @@ const App = () => {
             <PrivateRoute exact path="/foods" component={Foods} />
             <PrivateRoute exact path="/chemotherapies" component={Chemotherapies} />
             <PrivateRoute exact path="/sideEffects" component={SideEffects} />
+            <PrivateRoute exact path="/methodsOfprevention" component={MethodsOfPrevention} />
           </Switch>
           <div className="background">
             <img src={background} />

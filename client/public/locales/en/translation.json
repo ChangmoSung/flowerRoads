@@ -46,5 +46,12 @@
   "sideEffectAdded": "Side effect added",
   "sideEffectNotAdded": "Side effect not added",
   "sideEffectDeleted": "Side effect deleted",
-  "sideEffectNotDeleted": "Side effect not deleted"
+  "sideEffectNotDeleted": "Side effect not deleted",
+  "methodsOfPrevention": "Methods of prevention",
+  "enterMethod": "Enter a method",
+  "wouldYouLikeToDeleteMethod": "Would you like to delete a method?",
+  "methodAdded": "Method added",
+  "methodNotAdded": "Method not added",
+  "methodDeleted": "Method deleted",
+  "methodNotDeleted": "Method not deleted"
 }

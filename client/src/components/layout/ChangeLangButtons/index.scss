@@ -27,7 +27,7 @@
     width: 60%;
     height: 5.5rem;
     position: absolute;
-    right: 2rem;
+    right: 1.5rem;
     z-index: 1;
     background: none;
     border: none;
@@ -35,7 +35,7 @@
     transition: right 0.5s;
 
     &.en {
-      right: 8rem;
+      right: 7.5rem;
     }
   }
 }

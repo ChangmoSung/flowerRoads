@@ -4,6 +4,7 @@ import alerts from "./alerts";
 import users from "./users";
 import sideEffects from "./sideEffects";
 import chemotherapies from "./chemotherapies";
+import methodsOfPrevention from "./methodsOfPrevention";
 
 export default combineReducers({
   auth,
@@ -11,4 +12,5 @@ export default combineReducers({
   users,
   sideEffects,
   chemotherapies,
+  methodsOfPrevention
 });
