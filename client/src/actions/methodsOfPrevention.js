@@ -25,55 +25,55 @@ export const getMethodsOfPrevention = () => async (dispatch) => {
   }
 };
 
-export const addAMethodOfPrevention = (methodInfo = {}) => async (
-  dispatch
-) => {
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
+export const addAMethodOfPrevention =
+  (methodInfo = {}) =>
+  async (dispatch) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const body = JSON.stringify(methodInfo);
+    try {
+      const res = await axios.put(
+        "/methodsOfPrevention/addAMethodOfPrevention",
+        body,
+        config
+      );
+
+      dispatch({
+        type: ADD_A_METHOD_OF_PREVENTION,
+        payload: res.data,
+      });
+      dispatch(setAlert({ msg: "methodAdded", alertType: "success" }));
+    } catch (err) {
+      dispatch({
+        type: ADD_A_METHOD_OF_PREVENTION_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status },
+      });
+      dispatch(setAlert({ msg: "methodNotAdded", alertType: "danger" }));
+    }
   };
 
-  const body = JSON.stringify(methodInfo);
-  try {
-    const res = await axios.put(
-      "/methodsOfPrevention/addAMethodOfPrevention",
-      body,
-      config
-    );
+export const deleteAMethodOfPrevention =
+  ({ category, methodId }) =>
+  async (dispatch) => {
+    try {
+      const res = await axios.delete(
+        `/methodsOfPrevention/deleteAMethodOfPrevention/${category}/${methodId}`
+      );
 
-    dispatch({
-      type: ADD_A_METHOD_OF_PREVENTION,
-      payload: res.data,
-    });
-    dispatch(setAlert({ msg: "methodAdded", alertType: "success" }));
-  } catch (err) {
-    dispatch({
-      type: ADD_A_METHOD_OF_PREVENTION_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    });
-    dispatch(setAlert({ msg: "methodNotAdded", alertType: "danger" }));
-  }
-};
-
-export const deleteAMethodOfPrevention = (methodId = "") => async (
-  dispatch
-) => {
-  try {
-    const res = await axios.delete(
-      `/methodsOfPrevention/deleteAMethodOfPrevention/${methodId}`
-    );
-
-    dispatch({
-      type: DELETE_A_METHOD_OF_PREVENTION,
-      payload: res.data,
-    });
-    dispatch(setAlert({ msg: "methodDeleted", alertType: "success" }));
-  } catch (err) {
-    dispatch({
-      type: DELETE_A_METHOD_OF_PREVENTION_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    });
-    dispatch(setAlert({ msg: "methodNotDeleted", alertType: "danger" }));
-  }
-};
+      dispatch({
+        type: DELETE_A_METHOD_OF_PREVENTION,
+        payload: res.data,
+      });
+      dispatch(setAlert({ msg: "methodDeleted", alertType: "success" }));
+    } catch (err) {
+      dispatch({
+        type: DELETE_A_METHOD_OF_PREVENTION_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status },
+      });
+      dispatch(setAlert({ msg: "methodNotDeleted", alertType: "danger" }));
+    }
+  };

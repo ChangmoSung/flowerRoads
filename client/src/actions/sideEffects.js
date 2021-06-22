@@ -25,55 +25,55 @@ export const getSideEffectsListByAdmin = () => async (dispatch) => {
   }
 };
 
-export const addSideEffectByAdmin = (sideEffectInfoByAdmin = {}) => async (
-  dispatch
-) => {
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
+export const addSideEffectByAdmin =
+  (sideEffectInfoByAdmin = {}) =>
+  async (dispatch) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const body = JSON.stringify(sideEffectInfoByAdmin);
+    try {
+      const res = await axios.put(
+        "/sideEffects/addSideEffectByAdmin",
+        body,
+        config
+      );
+
+      dispatch({
+        type: ADD_SIDE_EFFECT_BY_ADMIN,
+        payload: res.data,
+      });
+      dispatch(setAlert({ msg: "sideEffectAdded", alertType: "success" }));
+    } catch (err) {
+      dispatch({
+        type: ADD_SIDE_EFFECT_BY_ADMIN_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status },
+      });
+      dispatch(setAlert({ msg: "sideEffectNotAdded", alertType: "danger" }));
+    }
   };
 
-  const body = JSON.stringify(sideEffectInfoByAdmin);
-  try {
-    const res = await axios.put(
-      "/sideEffects/addSideEffectByAdmin",
-      body,
-      config
-    );
+export const deleteSideEffectByAdmin =
+  (sideEffectIdByAdmin = "") =>
+  async (dispatch) => {
+    try {
+      const res = await axios.delete(
+        `/sideEffects/deleteSideEffectByAdmin/${sideEffectIdByAdmin}`
+      );
 
-    dispatch({
-      type: ADD_SIDE_EFFECT_BY_ADMIN,
-      payload: res.data,
-    });
-    dispatch(setAlert({ msg: "sideEffectAdded", alertType: "success" }));
-  } catch (err) {
-    dispatch({
-      type: ADD_SIDE_EFFECT_BY_ADMIN_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    });
-    dispatch(setAlert({ msg: "sideEffectNotAdded", alertType: "danger" }));
-  }
-};
-
-export const deleteSideEffectByAdmin = (sideEffectIdByAdmin = "") => async (
-  dispatch
-) => {
-  try {
-    const res = await axios.delete(
-      `/sideEffects/deleteSideEffectByAdmin/${sideEffectIdByAdmin}`
-    );
-
-    dispatch({
-      type: DELETE_SIDE_EFFECT_BY_ADMIN,
-      payload: res.data,
-    });
-    dispatch(setAlert({ msg: "sideEffectDeleted", alertType: "success" }));
-  } catch (err) {
-    dispatch({
-      type: DELETE_SIDE_EFFECT_BY_ADMIN_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    });
-    dispatch(setAlert({ msg: "sideEffectNotDeleted", alertType: "danger" }));
-  }
-};
+      dispatch({
+        type: DELETE_SIDE_EFFECT_BY_ADMIN,
+        payload: res.data,
+      });
+      dispatch(setAlert({ msg: "sideEffectDeleted", alertType: "success" }));
+    } catch (err) {
+      dispatch({
+        type: DELETE_SIDE_EFFECT_BY_ADMIN_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status },
+      });
+      dispatch(setAlert({ msg: "sideEffectNotDeleted", alertType: "danger" }));
+    }
+  };

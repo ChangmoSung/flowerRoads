@@ -12,5 +12,5 @@ export default combineReducers({
   users,
   sideEffects,
   chemotherapies,
-  methodsOfPrevention
+  methodsOfPrevention,
 });

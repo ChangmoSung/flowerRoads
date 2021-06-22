@@ -53,5 +53,6 @@
   "methodAdded": "예방법이 추가 되었습니다",
   "methodNotAdded": "예방법이 추가되지 않았습니다",
   "methodDeleted": "예방법을 지웠습니다",
-  "methodNotDeleted": "예방법이 지워지지 않았습니다"
+  "methodNotDeleted": "예방법이 지워지지 않았습니다",
+  "enterCategory": "카테고리를 입력하시오"
 }

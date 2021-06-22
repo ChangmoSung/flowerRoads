@@ -53,5 +53,6 @@
   "methodAdded": "Method added",
   "methodNotAdded": "Method not added",
   "methodDeleted": "Method deleted",
-  "methodNotDeleted": "Method not deleted"
+  "methodNotDeleted": "Method not deleted",
+  "enterCategory": "Enter a category"
 }

@@ -99,7 +99,9 @@ const Chemotherapies = ({
               chemotherapies.map(
                 ({ _id, chemotherapy, aboutChemotherapy }, i) => (
                   <div key={i} className="chemotherapy">
-                    <span className={!admin && 'fullWidth'}>{chemotherapy}</span>
+                    <span className={!admin && "fullWidth"}>
+                      {chemotherapy}
+                    </span>
                     <div className="buttonsContainer">
                       {admin && (
                         <button

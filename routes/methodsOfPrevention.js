@@ -15,13 +15,23 @@ router.get("/getMethodsOfPrevention", auth, async (req, res) => {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const methodsOfPrevention = await MethodsOfPrevention.find({ active: true });
+    const methodsOfPrevention = await MethodsOfPrevention.find({
+      active: true,
+    });
     if (!methodsOfPrevention.length) {
       return res
         .status(400)
         .json({ errors: [{ msg: "No methods of prevention" }] });
     }
-    res.send(methodsOfPrevention);
+
+    const methodsOfPreventionToReturn = methodsOfPrevention.map(
+      ({ category, methods }) => ({
+        category,
+        methods: methods.filter(({ active }) => active),
+      })
+    );
+
+    res.send(methodsOfPreventionToReturn);
   } catch ({ message = "" }) {
     console.error(message);
     res.status(500).send(`Server error - ${message}`);
@@ -29,15 +39,14 @@ router.get("/getMethodsOfPrevention", auth, async (req, res) => {
 });
 
 // @route PUT /methodsOfPrevention/addAMethodOfPrevention
-// @desc Add side effect by admin
+// @desc Add a method of prevention
 // @access Private
 router.put(
   "/addAMethodOfPrevention",
   [
     auth,
-    check("method", "Provide a method")
-      .not()
-      .isEmpty(),
+    check("category", "Provide a category").not().isEmpty(),
+    check("method", "Provide a method").not().isEmpty(),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -45,24 +54,44 @@ router.put(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { method } = req.body;
+    const { category, method } = req.body;
 
     try {
-      let methodOfPrevention = await MethodsOfPrevention.findOne({ method });
-      if (methodOfPrevention) {
+      let methodOfPrevention = (await MethodsOfPrevention.findOne({
+        category,
+      })) || { category: "", methods: [] };
+
+      const doesMethodExist = methodOfPrevention.methods.some(
+        ({ method: methodThatExists = "" }) => methodThatExists === method
+      );
+      if (doesMethodExist) {
         return res
           .status(400)
           .json({ errors: [{ msg: "Method already exists" }] });
       }
 
-      methodOfPrevention = new MethodsOfPrevention({
-        method,
-      });
+      if (methodOfPrevention.category === category) {
+        methodOfPrevention.methods.push({ method });
+      } else {
+        methodOfPrevention = new MethodsOfPrevention({
+          category,
+          methods: [{ method }],
+        });
+      }
 
       await methodOfPrevention.save();
 
-      const methodsOfPrevention = await MethodsOfPrevention.find({ active: true });
-      res.send(methodsOfPrevention);
+      const methodsOfPrevention = await MethodsOfPrevention.find({
+        active: true,
+      });
+      const methodsOfPreventionToReturn = methodsOfPrevention.map(
+        ({ category: cat, methods }) => ({
+          category: cat,
+          methods: methods.filter(({ active }) => active),
+        })
+      );
+
+      res.send(methodsOfPreventionToReturn);
     } catch ({ message = "" }) {
       console.error(message);
       res.status(500).send(`Server error - ${message}`);
@@ -70,22 +99,34 @@ router.put(
   }
 );
 
+// @route PUT /methodsOfPrevention/deleteAMethodOfPrevention
+// @desc Delete a method of prevention
+// @access Private
 router.delete(
-  "/deleteAMethodOfPrevention/:methodId",
+  "/deleteAMethodOfPrevention/:category/:methodId",
   auth,
   async (req, res) => {
     try {
-      const methodToDelete = await MethodsOfPrevention.findOneAndRemove({
-        _id: req.params.methodId,
-      });
-      if (!methodToDelete) {
+      const methodOfPrevention = await MethodsOfPrevention.findOneAndUpdate(
+        { category: req.params.category },
+        { $pull: { methods: { _id: req.params.methodId } } }
+      );
+      if (!methodOfPrevention) {
         return res
           .status(400)
           .json({ errors: [{ msg: "Method doesn't exist" }] });
       }
 
-      const methodsOfPrevention = await MethodsOfPrevention.find({ active: true });
-      res.json(methodsOfPrevention);
+      const methodsOfPrevention = await MethodsOfPrevention.find({
+        active: true,
+      });
+      const methodsOfPreventionToReturn = methodsOfPrevention.map(
+        ({ category, methods }) => ({
+          category,
+          methods: methods.filter(({ active }) => active),
+        })
+      );
+      res.json(methodsOfPreventionToReturn);
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Server error");

@@ -29,66 +29,70 @@ export const loadUser = () => async (dispatch) => {
   }
 };
 
-export const signIn = ({ email = "", password = "" }) => async (dispatch) => {
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
+export const signIn =
+  ({ email = "", password = "" }) =>
+  async (dispatch) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const body = JSON.stringify({ email, password });
+
+    try {
+      const res = await axios.post("/auth", body, config);
+      dispatch({
+        type: SIGNIN_SUCCESS,
+        payload: res.data,
+      });
+
+      dispatch(loadUser());
+      dispatch(setAlert({ msg: "signInSuccess", alertType: "success" }));
+    } catch (err) {
+      dispatch({
+        type: SIGNIN_FAIL,
+        payload: { msg: err.response.statusText, status: err.response.status },
+      });
+      dispatch(
+        setAlert({
+          msg: "enterCorrectEmailAndPassword",
+          alertType: "danger",
+        })
+      );
+    }
   };
-
-  const body = JSON.stringify({ email, password });
-
-  try {
-    const res = await axios.post("/auth", body, config);
-    dispatch({
-      type: SIGNIN_SUCCESS,
-      payload: res.data,
-    });
-
-    dispatch(loadUser());
-    dispatch(setAlert({ msg: "signInSuccess", alertType: "success" }));
-  } catch (err) {
-    dispatch({
-      type: SIGNIN_FAIL,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    });
-    dispatch(
-      setAlert({
-        msg: "enterCorrectEmailAndPassword",
-        alertType: "danger",
-      })
-    );
-  }
-};
 
 export const signOut = () => (dispatch) => {
   dispatch({ type: SIGN_OUT });
   dispatch(setAlert({ msg: "signOutSuccess", alertType: "success" }));
 };
 
-export const signUp = (user = {}) => async (dispatch) => {
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
+export const signUp =
+  (user = {}) =>
+  async (dispatch) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const body = JSON.stringify(user);
+
+    try {
+      const res = await axios.post("/users", body, config);
+
+      dispatch({
+        type: SIGNUP_SUCCESS,
+        payload: res.data,
+      });
+      dispatch(loadUser());
+      dispatch(setAlert({ msg: "signUpSuccess", alertType: "success" }));
+    } catch (err) {
+      dispatch({
+        type: SIGNUP_FAIL,
+        payload: { msg: err.response.statusText, status: err.response.status },
+      });
+      dispatch(setAlert({ msg: "userAlreadyExists", alertType: "danger" }));
+    }
   };
-
-  const body = JSON.stringify(user);
-
-  try {
-    const res = await axios.post("/users", body, config);
-
-    dispatch({
-      type: SIGNUP_SUCCESS,
-      payload: res.data,
-    });
-    dispatch(loadUser());
-    dispatch(setAlert({ msg: "signUpSuccess", alertType: "success" }));
-  } catch (err) {
-    dispatch({
-      type: SIGNUP_FAIL,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    });
-    dispatch(setAlert({ msg: "userAlreadyExists", alertType: "danger" }));
-  }
-};

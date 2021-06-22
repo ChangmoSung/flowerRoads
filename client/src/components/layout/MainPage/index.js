@@ -8,7 +8,6 @@ import { useTranslation } from "react-i18next";
 import { getRoles } from "../../../actions/users";
 import { signOut } from "../../../actions/auth";
 
-
 const MainPage = ({ getRoles, isAuthenticated, signOut }) => {
   useEffect(() => {
     getRoles();
@@ -23,24 +22,28 @@ const MainPage = ({ getRoles, isAuthenticated, signOut }) => {
       <h2>{t("title")}</h2>
       <ul>
         <li>
-          <Link to='/methodsOfPrevention'>{t("methodsOfPrevention")}</Link>
+          <Link to="/methodsOfPrevention">{t("methodsOfPrevention")}</Link>
         </li>
         <li>
-          <Link to='/foods'>{t("foods")}</Link>
+          <Link to="/foods">{t("foods")}</Link>
         </li>
         <li>
-          <Link to='/sideEffects'>{t("sideEffects")}</Link>
+          <Link to="/sideEffects">{t("sideEffects")}</Link>
         </li>
         <li>
           <Link to="/chemotherapies">{t("chemotherapy")}</Link>
         </li>
         <li>
-          <Link to="/"
-              onClick={() => {
-                if (window.confirm(t("wouldYouLikeToSignOut"))) {
-                  signOut();
-                }
-              }}>{t("signOut")}</Link>
+          <Link
+            to="/"
+            onClick={() => {
+              if (window.confirm(t("wouldYouLikeToSignOut"))) {
+                signOut();
+              }
+            }}
+          >
+            {t("signOut")}
+          </Link>
         </li>
       </ul>
     </div>
@@ -59,5 +62,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   getRoles,
-  signOut
+  signOut,
 })(MainPage);

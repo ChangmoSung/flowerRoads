@@ -34,9 +34,17 @@ const App = () => {
             <Route exact path="/signUpPage" component={SignUpPage} />
             <PrivateRoute exact path="/mainPage" component={MainPage} />
             <PrivateRoute exact path="/foods" component={Foods} />
-            <PrivateRoute exact path="/chemotherapies" component={Chemotherapies} />
+            <PrivateRoute
+              exact
+              path="/chemotherapies"
+              component={Chemotherapies}
+            />
             <PrivateRoute exact path="/sideEffects" component={SideEffects} />
-            <PrivateRoute exact path="/methodsOfprevention" component={MethodsOfPrevention} />
+            <PrivateRoute
+              exact
+              path="/methodsOfprevention"
+              component={MethodsOfPrevention}
+            />
           </Switch>
           <div className="background">
             <img src={background} />

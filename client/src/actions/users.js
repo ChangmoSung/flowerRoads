@@ -49,48 +49,52 @@ export const getFoodsList = () => async (dispatch) => {
   }
 };
 
-export const addFood = (foodInfo = {}) => async (dispatch) => {
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
+export const addFood =
+  (foodInfo = {}) =>
+  async (dispatch) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const body = JSON.stringify(foodInfo);
+    try {
+      const res = await axios.put("/users/addFood", body, config);
+
+      dispatch({
+        type: ADD_FOOD,
+        payload: res.data,
+      });
+      dispatch(setAlert({ msg: "foodAdded", alertType: "success" }));
+    } catch (err) {
+      dispatch({
+        type: ADD_FOOD_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status },
+      });
+      dispatch(setAlert({ msg: "foodNotAdded", alertType: "danger" }));
+    }
   };
 
-  const body = JSON.stringify(foodInfo);
-  try {
-    const res = await axios.put("/users/addFood", body, config);
+export const deleteFood =
+  (foodId = "") =>
+  async (dispatch) => {
+    try {
+      const res = await axios.delete(`/users/deleteFood/${foodId}`);
 
-    dispatch({
-      type: ADD_FOOD,
-      payload: res.data,
-    });
-    dispatch(setAlert({ msg: "foodAdded", alertType: "success" }));
-  } catch (err) {
-    dispatch({
-      type: ADD_FOOD_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    });
-    dispatch(setAlert({ msg: "foodNotAdded", alertType: "danger" }));
-  }
-};
-
-export const deleteFood = (foodId = "") => async (dispatch) => {
-  try {
-    const res = await axios.delete(`/users/deleteFood/${foodId}`);
-
-    dispatch({
-      type: DELETE_FOOD,
-      payload: res.data,
-    });
-    dispatch(setAlert({ msg: "foodDeleted", alertType: "success" }));
-  } catch (err) {
-    dispatch({
-      type: DELETE_FOOD_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    });
-    dispatch(setAlert({ msg: "foodNotDeleted", alertType: "danger" }));
-  }
-};
+      dispatch({
+        type: DELETE_FOOD,
+        payload: res.data,
+      });
+      dispatch(setAlert({ msg: "foodDeleted", alertType: "success" }));
+    } catch (err) {
+      dispatch({
+        type: DELETE_FOOD_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status },
+      });
+      dispatch(setAlert({ msg: "foodNotDeleted", alertType: "danger" }));
+    }
+  };
 
 export const getSideEffectsListByUser = () => async (dispatch) => {
   try {
@@ -108,51 +112,51 @@ export const getSideEffectsListByUser = () => async (dispatch) => {
   }
 };
 
-export const addSideEffectByUser = (sideEffectInfo = {}) => async (
-  dispatch
-) => {
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
+export const addSideEffectByUser =
+  (sideEffectInfo = {}) =>
+  async (dispatch) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const body = JSON.stringify(sideEffectInfo);
+    try {
+      const res = await axios.put("/users/addSideEffectByUser", body, config);
+
+      dispatch({
+        type: ADD_SIDE_EFFECT_BY_USER,
+        payload: res.data,
+      });
+      dispatch(setAlert({ msg: "sideEffectAdded", alertType: "success" }));
+    } catch (err) {
+      dispatch({
+        type: ADD_SIDE_EFFECT_BY_USER_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status },
+      });
+      dispatch(setAlert({ msg: "sideEffectNotAdded", alertType: "danger" }));
+    }
   };
 
-  const body = JSON.stringify(sideEffectInfo);
-  try {
-    const res = await axios.put("/users/addSideEffectByUser", body, config);
+export const deleteSideEffectByUser =
+  (sideEffectId = "") =>
+  async (dispatch) => {
+    try {
+      const res = await axios.delete(
+        `/users/deleteSideEffectByUser/${sideEffectId}`
+      );
 
-    dispatch({
-      type: ADD_SIDE_EFFECT_BY_USER,
-      payload: res.data,
-    });
-    dispatch(setAlert({ msg: "sideEffectAdded", alertType: "success" }));
-  } catch (err) {
-    dispatch({
-      type: ADD_SIDE_EFFECT_BY_USER_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    });
-    dispatch(setAlert({ msg: "sideEffectNotAdded", alertType: "danger" }));
-  }
-};
-
-export const deleteSideEffectByUser = (sideEffectId = "") => async (
-  dispatch
-) => {
-  try {
-    const res = await axios.delete(
-      `/users/deleteSideEffectByUser/${sideEffectId}`
-    );
-
-    dispatch({
-      type: DELETE_SIDE_EFFECT_BY_USER,
-      payload: res.data,
-    });
-    dispatch(setAlert({ msg: "sideEffectDeleted", alertType: "success" }));
-  } catch (err) {
-    dispatch({
-      type: DELETE_SIDE_EFFECT_BY_USER_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    });
-    dispatch(setAlert({ msg: "sideEffectNotDeleted", alertType: "danger" }));
-  }
-};
+      dispatch({
+        type: DELETE_SIDE_EFFECT_BY_USER,
+        payload: res.data,
+      });
+      dispatch(setAlert({ msg: "sideEffectDeleted", alertType: "success" }));
+    } catch (err) {
+      dispatch({
+        type: DELETE_SIDE_EFFECT_BY_USER_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status },
+      });
+      dispatch(setAlert({ msg: "sideEffectNotDeleted", alertType: "danger" }));
+    }
+  };

@@ -97,7 +97,9 @@ const SideEffects = ({
             {sideEffectsListByAdmin.length > 0 &&
               sideEffectsListByAdmin.map(({ _id, sideEffectByAdmin }, i) => (
                 <div key={i} className="sideEffect">
-                  <span className={!admin && 'fullWidth'}>{sideEffectByAdmin}</span>
+                  <span className={!admin && "fullWidth"}>
+                    {sideEffectByAdmin}
+                  </span>
                   {admin && (
                     <div className="buttonsContainer">
                       <button
