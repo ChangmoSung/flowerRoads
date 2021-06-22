@@ -135,7 +135,7 @@ router.delete(
 );
 
 // @route PUT /methodsOfPrevention/deleteACategoryOfMethodsOfPrevention
-// @desc Delete a method of prevention
+// @desc Delete a category
 // @access Private
 router.delete(
   "/deleteACategoryOfMethodsOfPrevention/:category",
