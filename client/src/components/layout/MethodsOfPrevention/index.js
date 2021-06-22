@@ -8,6 +8,7 @@ import {
   getMethodsOfPrevention,
   addAMethodOfPrevention,
   deleteAMethodOfPrevention,
+  deleteACategoryOfMethodsOfPrevention,
 } from "../../../actions/methodsOfPrevention";
 import bin from "../../../images/bin.png";
 
@@ -17,6 +18,7 @@ const MethodsOfPrevention = ({
   getMethodsOfPrevention,
   addAMethodOfPrevention,
   deleteAMethodOfPrevention,
+  deleteACategoryOfMethodsOfPrevention,
   isAuthenticated,
 }) => {
   const categoryInput = useRef(null);
@@ -79,6 +81,17 @@ const MethodsOfPrevention = ({
             methodsOfPrevention.map(({ category, methods }, i) => (
               <div key={i} className="category">
                 <span className={!admin && "fullWidth"}>{category}</span>
+                <button
+                  onClick={() =>
+                    window.confirm(
+                      t("wouldYouLikeToDeleteCategory", {
+                        method,
+                      })
+                    ) && deleteACategoryOfMethodsOfPrevention(category)
+                  }
+                >
+                  <img src={bin} />
+                </button>
                 <div>
                   {methods.map(({ _id, method }) => (
                     <p>
@@ -112,6 +125,7 @@ MethodsOfPrevention.propTypes = {
   getMethodsOfPrevention: PropTypes.func.isRequired,
   addAMethodOfPrevention: PropTypes.func.isRequired,
   deleteAMethodOfPrevention: PropTypes.func.isRequired,
+  deleteACategoryOfMethodsOfPrevention: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
 };
 
@@ -125,4 +139,5 @@ export default connect(mapStateToProps, {
   getMethodsOfPrevention,
   addAMethodOfPrevention,
   deleteAMethodOfPrevention,
+  deleteACategoryOfMethodsOfPrevention,
 })(MethodsOfPrevention);

@@ -7,6 +7,8 @@ import {
   ADD_A_METHOD_OF_PREVENTION_ERROR,
   DELETE_A_METHOD_OF_PREVENTION,
   DELETE_A_METHOD_OF_PREVENTION_ERROR,
+  DELETE_A_CATEGORY_OF_METHODS_OF_PREVENTION,
+  DELETE_A_CATEGORY_OF_METHODS_OF_PREVENTION_ERROR,
 } from "./types.js";
 
 export const getMethodsOfPrevention = () => async (dispatch) => {
@@ -75,5 +77,29 @@ export const deleteAMethodOfPrevention =
         payload: { msg: err.response.statusText, status: err.response.status },
       });
       dispatch(setAlert({ msg: "methodNotDeleted", alertType: "danger" }));
+    }
+  };
+
+export const deleteACategoryOfMethodsOfPrevention =
+  (category) => async (dispatch) => {
+    try {
+      const res = await axios.delete(
+        `/methodsOfPrevention/deleteACategoryOfMethodsOfPrevention/${category}`
+      );
+
+      dispatch({
+        type: DELETE_A_CATEGORY_OF_METHODS_OF_PREVENTION,
+        payload: res.data,
+      });
+      dispatch(setAlert({ msg: "categoryDeleted", alertType: "success" }));
+    } catch (err) {
+      dispatch({
+        type: DELETE_A_CATEGORY_OF_METHODS_OF_PREVENTION_ERROR,
+        payload: {
+          msg: err.response.statusText,
+          status: err.response.status,
+        },
+      });
+      dispatch(setAlert({ msg: "categoryNotDeleted", alertType: "danger" }));
     }
   };

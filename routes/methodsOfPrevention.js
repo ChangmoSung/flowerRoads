@@ -134,4 +134,38 @@ router.delete(
   }
 );
 
+// @route PUT /methodsOfPrevention/deleteACategoryOfMethodsOfPrevention
+// @desc Delete a method of prevention
+// @access Private
+router.delete(
+  "/deleteACategoryOfMethodsOfPrevention/:category",
+  auth,
+  async (req, res) => {
+    try {
+      const methodOfPrevention = await MethodsOfPrevention.findOneAndDelete({
+        category: req.params.category,
+      });
+      if (!methodOfPrevention) {
+        return res
+          .status(400)
+          .json({ errors: [{ msg: "Category doesn't exist" }] });
+      }
+
+      const methodsOfPrevention = await MethodsOfPrevention.find({
+        active: true,
+      });
+      const methodsOfPreventionToReturn = methodsOfPrevention.map(
+        ({ category, methods }) => ({
+          category,
+          methods: methods.filter(({ active }) => active),
+        })
+      );
+      res.json(methodsOfPreventionToReturn);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server error");
+    }
+  }
+);
+
 module.exports = router;

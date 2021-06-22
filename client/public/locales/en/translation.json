@@ -50,9 +50,12 @@
   "methodsOfPrevention": "Methods of prevention",
   "enterMethod": "Enter a method",
   "wouldYouLikeToDeleteMethod": "Would you like to delete a method?",
+  "wouldYouLikeToDeleteCategory": "Would you like to delete a category?",
   "methodAdded": "Method added",
   "methodNotAdded": "Method not added",
   "methodDeleted": "Method deleted",
   "methodNotDeleted": "Method not deleted",
+  "categoryDeleted": "Category deleted",
+  "categoryNotDeleted": "Category not deleted",
   "enterCategory": "Enter a category"
 }

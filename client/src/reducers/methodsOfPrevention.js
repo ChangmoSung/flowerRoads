@@ -5,6 +5,8 @@ import {
   ADD_A_METHOD_OF_PREVENTION_ERROR,
   DELETE_A_METHOD_OF_PREVENTION,
   DELETE_A_METHOD_OF_PREVENTION_ERROR,
+  DELETE_A_CATEGORY_OF_METHODS_OF_PREVENTION,
+  DELETE_A_CATEGORY_OF_METHODS_OF_PREVENTION_ERROR,
 } from "../actions/types";
 
 const initialState = {
@@ -20,6 +22,7 @@ export default function (state = initialState, action) {
     case METHODS_OF_PREVENTION_LOADED:
     case ADD_A_METHOD_OF_PREVENTION:
     case DELETE_A_METHOD_OF_PREVENTION:
+    case DELETE_A_CATEGORY_OF_METHODS_OF_PREVENTION:
       return {
         ...state,
         methodsOfPrevention: payload,
@@ -28,6 +31,7 @@ export default function (state = initialState, action) {
     case METHODS_OF_PREVENTION_LOADED_ERROR:
     case ADD_A_METHOD_OF_PREVENTION_ERROR:
     case DELETE_A_METHOD_OF_PREVENTION_ERROR:
+    case DELETE_A_CATEGORY_OF_METHODS_OF_PREVENTION_ERROR:
       return {
         ...state,
         error: payload,
