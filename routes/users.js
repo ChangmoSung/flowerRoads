@@ -270,7 +270,6 @@ router.put(
         sideEffectByUser,
       });
       await user.save();
-      console.log("working");
 
       const userData = await UserData.findOne({ user: req.user.id });
       userData?.sideEffects.push({ sideEffect: sideEffectByUser });
