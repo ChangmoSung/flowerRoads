@@ -1,0 +1,37 @@
+@import "../../../styles/variables.scss";
+
+.methodsForModal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  p {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid $green;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    font-size: 2.2rem;
+    background: white;
+    line-height: 3rem;
+
+    button {
+      background: none;
+      border: none;
+      width: 7.5rem;
+      height: 5rem;
+      cursor: pointer;
+    }
+  }
+}
+
+.closeModalButton {
+  background: none;
+  border: none;
+  width: 7.5rem;
+  height: 7.5rem;
+  margin-top: 3rem;
+  cursor: pointer;
+}

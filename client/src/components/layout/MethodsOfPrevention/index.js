@@ -57,7 +57,7 @@ const MethodsOfPrevention = ({
 
   return (
     <div className="methodsOfPreventionContainer">
-      <h2>{t("methodsOfPrevention")}</h2>
+      {!categoryForModal && <h2>{t("methodsOfPrevention")}</h2>}
       {admin && (
         <form onSubmit={onSubmit}>
           <input

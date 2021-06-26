@@ -1,10 +1,11 @@
-import React from "react";
+import React, { Fragment } from "react";
 import "./index.scss";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 import { deleteAMethodOfPrevention } from "../../../../actions/methodsOfPrevention";
+import close from "../../../../images/close.png";
 import bin from "../../../../images/bin.png";
 
 const MethodsOfPrevention = ({
@@ -21,9 +22,9 @@ const MethodsOfPrevention = ({
   if (!isAuthenticated) return <Redirect to="/" />;
 
   return (
-    <div className="methodsOfPreventionContainer">
+    <Fragment>
       <h2>{categoryForModal}</h2>
-      <div className="methods">
+      <div className="methodsForModal">
         {methodsForModal.map(({ _id, method }) => (
           <p>
             {method}
@@ -47,10 +48,13 @@ const MethodsOfPrevention = ({
           </p>
         ))}
       </div>
-      <button onClick={() => setModalData({ category: "", methods: [] })}>
-        Close
+      <button
+        className="closeModalButton"
+        onClick={() => setModalData({ category: "", methods: [] })}
+      >
+        <img src={close} />
       </button>
-    </div>
+    </Fragment>
   );
 };
 
