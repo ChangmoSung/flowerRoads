@@ -72,7 +72,7 @@ const SideEffects = ({
   if (!isAuthenticated) return <Redirect to="/" />;
 
   return (
-    <div className="sideEffectsContainer">
+    <div className="sideEffectsContainer containerMargin">
       <h2>{t("sideEffects")}</h2>
       {page === "admin" && (
         <Fragment>

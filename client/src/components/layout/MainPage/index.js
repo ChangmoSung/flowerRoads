@@ -18,7 +18,7 @@ const MainPage = ({ getRoles, isAuthenticated, signOut }) => {
   if (!isAuthenticated) return <Redirect to="/" />;
 
   return (
-    <div className="mainPage">
+    <div className="mainPage containerMargin">
       <h2>{t("title")}</h2>
       <ul>
         <li>

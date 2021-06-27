@@ -37,7 +37,7 @@ const Foods = ({
   if (!isAuthenticated) return <Redirect to="/" />;
 
   return (
-    <div className="foodsContainer">
+    <div className="foodsContainer containerMargin">
       <h2>{t("foodsList")}</h2>
       <form onSubmit={onSubmit}>
         <input

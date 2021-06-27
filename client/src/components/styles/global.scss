@@ -32,11 +32,14 @@ h2 {
   font-size: 3.5rem;
   display: flex;
   justify-content: center;
-  margin: 13rem 0 3rem;
 
   @include mq450 {
     margin-top: 11rem;
   }
+}
+
+.containerMargin {
+  margin: 13rem 0 3rem;
 }
 
 .setPageButton {

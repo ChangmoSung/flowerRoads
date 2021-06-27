@@ -56,9 +56,9 @@ const MethodsOfPrevention = ({
   if (!isAuthenticated) return <Redirect to="/" />;
 
   return (
-    <div className="methodsOfPreventionContainer">
+    <div className="methodsOfPreventionContainer containerMargin">
       {!categoryForModal && <h2>{t("methodsOfPrevention")}</h2>}
-      {admin && (
+      {admin && !categoryForModal && (
         <form onSubmit={onSubmit}>
           <input
             ref={categoryInput}

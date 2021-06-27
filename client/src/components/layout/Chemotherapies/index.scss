@@ -76,18 +76,13 @@
       .buttonsContainer {
         display: flex;
         justify-content: flex-end;
-        width: 18rem;
 
         button {
           background: none;
           border: none;
-          width: 5rem;
+          width: 10rem;
           height: 3.5rem;
           cursor: pointer;
-        }
-
-        @include mq450 {
-          width: 10rem;
         }
       }
 

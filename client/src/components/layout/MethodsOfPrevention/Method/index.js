@@ -23,7 +23,7 @@ const MethodsOfPrevention = ({
 
   return (
     <Fragment>
-      <h2>{categoryForModal}</h2>
+      <h2 className="modalTitle">{categoryForModal}</h2>
       <div className="methodsForModal">
         {methodsForModal.map(({ _id, method }) => (
           <p>

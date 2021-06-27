@@ -60,7 +60,7 @@ const Chemotherapies = ({
   if (!isAuthenticated) return <Redirect to="/" />;
 
   return (
-    <div className="chemotherapyContainer">
+    <div className="chemotherapyContainer containerMargin">
       <h2>{t("chemotherapies")}</h2>
       {chemotherapyIdForModal ? (
         <ChemotherapyModal
