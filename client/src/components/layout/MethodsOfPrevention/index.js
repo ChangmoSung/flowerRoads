@@ -26,9 +26,8 @@ const MethodsOfPrevention = ({
 
   const [modalData, setModalData] = useState({
     categoryForModal: "",
-    methodsForModal: [],
   });
-  const { categoryForModal, methodsForModal } = modalData;
+  const { categoryForModal } = modalData;
 
   const [formData, setFormData] = useState({
     category: "",
@@ -84,14 +83,13 @@ const MethodsOfPrevention = ({
       <div className="methodsOfPrevention">
         {methodsOfPrevention.length > 0 &&
           !categoryForModal &&
-          methodsOfPrevention.map(({ category, methods }, i) => (
+          methodsOfPrevention.map(({ category }, i) => (
             <div key={i} className="category">
               <span className={!admin && "fullWidth"}>{category}</span>
               <button
                 onClick={() =>
                   setModalData({
                     categoryForModal: category,
-                    methodsForModal: methods,
                   })
                 }
               >
@@ -115,7 +113,6 @@ const MethodsOfPrevention = ({
         {categoryForModal && (
           <Method
             categoryForModal={categoryForModal}
-            methodsForModal={methodsForModal}
             setModalData={setModalData}
           />
         )}

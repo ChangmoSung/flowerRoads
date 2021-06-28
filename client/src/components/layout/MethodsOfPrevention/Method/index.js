@@ -10,8 +10,8 @@ import bin from "../../../../images/bin.png";
 
 const MethodsOfPrevention = ({
   roles,
+  methodsOfPrevention,
   categoryForModal,
-  methodsForModal,
   setModalData,
   deleteAMethodOfPrevention,
   isAuthenticated,
@@ -25,32 +25,33 @@ const MethodsOfPrevention = ({
     <Fragment>
       <h2 className="modalTitle">{categoryForModal}</h2>
       <div className="methodsForModal">
-        {methodsForModal.map(({ _id, method }) => (
-          <p>
-            {method}
-            {admin && (
-              <button
-                onClick={() => {
-                  if (
-                    window.confirm(
-                      t("wouldYouLikeToDeleteMethod", {
-                        method,
-                      })
-                    )
-                  ) {
-                    deleteAMethodOfPrevention({
-                      category: categoryForModal,
-                      methodId: _id,
-                    });
-                    setModalData({ category: "", methods: [] });
-                  }
-                }}
-              >
-                <img src={bin} />
-              </button>
-            )}
-          </p>
-        ))}
+        {methodsOfPrevention
+          .find(({ category }) => category === categoryForModal)
+          .methods.map(({ _id, method }) => (
+            <p>
+              {method}
+              {admin && (
+                <button
+                  onClick={() => {
+                    if (
+                      window.confirm(
+                        t("wouldYouLikeToDeleteMethod", {
+                          method,
+                        })
+                      )
+                    ) {
+                      deleteAMethodOfPrevention({
+                        category: categoryForModal,
+                        methodId: _id,
+                      });
+                    }
+                  }}
+                >
+                  <img src={bin} />
+                </button>
+              )}
+            </p>
+          ))}
       </div>
       <button
         className="closeModalButton"
@@ -64,8 +65,8 @@ const MethodsOfPrevention = ({
 
 MethodsOfPrevention.propTypes = {
   roles: PropTypes.array,
+  methodsOfPrevention: PropTypes.array.isRequired,
   categoryForModal: PropTypes.string.isRequired,
-  methodsForModal: PropTypes.array.isRequired,
   setModalData: PropTypes.func.isRequired,
   deleteAMethodOfPrevention: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
@@ -74,6 +75,7 @@ MethodsOfPrevention.propTypes = {
 const mapStateToProps = (state) => ({
   roles: state.users.roles,
   isAuthenticated: state.auth.isAuthenticated,
+  methodsOfPrevention: state.methodsOfPrevention.methodsOfPrevention,
 });
 
 export default connect(mapStateToProps, {
