@@ -22,10 +22,9 @@ const ChemotherapyModal = ({
 }) => {
   const [formVisible, toggleForm] = useState(false);
   const [formData, setFormData] = useState({
-    chemotherapy: "",
     aboutChemotherapy: "",
   });
-  const { chemotherapy, aboutChemotherapy } = formData;
+  const { aboutChemotherapy } = formData;
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -34,7 +33,6 @@ const ChemotherapyModal = ({
     e.preventDefault();
     updateChemotherapy({
       _id: chemotherapyIdForModal,
-      chemotherapy,
       aboutChemotherapy,
     });
     toggleForm(false);
@@ -51,14 +49,7 @@ const ChemotherapyModal = ({
     <div className="chemotherapyModal">
       {formVisible ? (
         <form onSubmit={onSubmit}>
-          <input
-            type="text"
-            name="chemotherapy"
-            onChange={onChange}
-            placeholder={t("chemotherapy")}
-            aria-label="Chemotherapy"
-            required
-          />
+          <p>{chemotherapyForModal}</p>
           <input
             type="text"
             name="aboutChemotherapy"

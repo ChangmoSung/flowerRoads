@@ -27,7 +27,7 @@
       }
     }
 
-    button {
+    .addChemotherapyButton {
       width: 15rem;
       cursor: pointer;
 
@@ -50,7 +50,7 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 3rem;
-      padding: 1.5rem;
+      padding: 1rem;
       font-size: 2.2rem;
       border: 2px solid $green;
       border-radius: 1rem;
@@ -61,7 +61,7 @@
         line-height: 3rem;
 
         &.fullWidth {
-          width: 52rem;
+          width: 50rem;
 
           @include mq450 {
             width: 27rem;
@@ -73,22 +73,16 @@
         }
       }
 
-      .buttonsContainer {
-        display: flex;
-        justify-content: flex-end;
-
-        button {
-          background: none;
-          border: none;
-          width: 10rem;
-          height: 3.5rem;
-          cursor: pointer;
-        }
+      button {
+        background: none;
+        border: none;
+        width: 7.5rem;
+        height: 5rem;
+        cursor: pointer;
       }
 
       @include mq450 {
         width: 32rem;
-        padding: 1rem;
       }
     }
   }

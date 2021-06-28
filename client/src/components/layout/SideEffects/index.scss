@@ -6,30 +6,36 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 6.5rem;
     font-size: 2.2rem;
 
     input,
     button {
-      height: 100%;
       border: 2px solid $blue;
+      padding: 1.5rem;
+
+      @include mq450 {
+        padding: 1rem;
+      }
     }
 
     input {
-      width: 50rem;
-      padding-left: 1.5rem;
+      width: 47rem;
       border-radius: 1rem 0 0 1rem;
 
       @include mq450 {
-        width: 25rem;
+        width: 23rem;
       }
     }
 
     button {
-      width: 7rem;
-      background: none;
+      width: 10rem;
+      background: white;
       border-radius: 0 1rem 1rem 0;
       cursor: pointer;
+
+      @include mq450 {
+        width: 9rem;
+      }
     }
   }
 
@@ -45,7 +51,7 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 3rem;
-      padding: 1.5rem;
+      padding: 1rem;
       font-size: 2.2rem;
       border: 2px solid $blue;
       border-radius: 1rem;
@@ -87,7 +93,6 @@
 
       @include mq450 {
         width: 32rem;
-        padding: 1rem;
       }
     }
   }

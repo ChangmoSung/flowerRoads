@@ -83,7 +83,13 @@ router.delete("/deleteChemotherapy/:chemotherapyId", auth, async (req, res) => {
 
 router.put(
   "/updateChemotherapy",
-  [auth, check("_id", "Provide the id of the chemotherapy").not().isEmpty()],
+  [
+    auth,
+    check("_id", "Provide the id of the chemotherapy").not().isEmpty(),
+    check("aboutChemotherapy", "Provide info on the chemotherapy")
+      .not()
+      .isEmpty(),
+  ],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -91,7 +97,7 @@ router.put(
     }
 
     try {
-      const { _id, chemotherapy, aboutChemotherapy } = req.body;
+      const { _id, aboutChemotherapy } = req.body;
 
       const chemotherapyToUpdate = await Chemotherapies.findOne({ _id });
       if (!chemotherapyToUpdate) {
@@ -100,7 +106,6 @@ router.put(
           .json({ errors: [{ msg: "Chemotherapy doesn't exist" }] });
       }
 
-      chemotherapyToUpdate.chemotherapy = chemotherapy;
       chemotherapyToUpdate.aboutChemotherapy = aboutChemotherapy;
 
       await chemotherapyToUpdate.save();

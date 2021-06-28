@@ -6,18 +6,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 6.5rem;
     font-size: 2.2rem;
 
     input,
     button {
       height: 100%;
       border: 2px solid $blue;
+      padding: 1.5rem;
+
+      @include mq450 {
+        padding: 1rem;
+      }
     }
 
     input {
       width: 23rem;
-      padding-left: 1.5rem;
       border-radius: 1rem 0 0 1rem;
     }
 

@@ -91,7 +91,7 @@ const Chemotherapies = ({
                 aria-label="About chemotherapy"
                 required
               />
-              <button>{t("add")}</button>
+              <button className="addChemotherapyButton">{t("add")}</button>
             </form>
           )}
           <div className="chemotherapies">
@@ -102,32 +102,30 @@ const Chemotherapies = ({
                     <span className={!admin && "fullWidth"}>
                       {chemotherapy}
                     </span>
-                    <div className="buttonsContainer">
-                      {admin && (
-                        <button
-                          onClick={() =>
-                            window.confirm(
-                              t("wouldYouLikeToDeleteChemotherapy", {
-                                chemotherapy,
-                              })
-                            ) && deleteChemotherapy(_id)
-                          }
-                        >
-                          <img src={bin} />
-                        </button>
-                      )}
+                    {admin && (
                       <button
                         onClick={() =>
-                          setModalInfo({
-                            chemotherapyIdForModal: _id,
-                            chemotherapyForModal: chemotherapy,
-                            aboutChemotherapyForModal: aboutChemotherapy,
-                          })
+                          window.confirm(
+                            t("wouldYouLikeToDeleteChemotherapy", {
+                              chemotherapy,
+                            })
+                          ) && deleteChemotherapy(_id)
                         }
                       >
-                        <img src={info} />
+                        <img src={bin} />
                       </button>
-                    </div>
+                    )}
+                    <button
+                      onClick={() =>
+                        setModalInfo({
+                          chemotherapyIdForModal: _id,
+                          chemotherapyForModal: chemotherapy,
+                          aboutChemotherapyForModal: aboutChemotherapy,
+                        })
+                      }
+                    >
+                      <img src={info} />
+                    </button>
                   </div>
                 )
               )}

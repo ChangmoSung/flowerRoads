@@ -30,17 +30,21 @@ const MethodsOfPrevention = ({
             {method}
             {admin && (
               <button
-                onClick={() =>
-                  window.confirm(
-                    t("wouldYouLikeToDeleteMethod", {
-                      method,
-                    })
-                  ) &&
-                  deleteAMethodOfPrevention({
-                    category: categoryForModal,
-                    methodId: _id,
-                  })
-                }
+                onClick={() => {
+                  if (
+                    window.confirm(
+                      t("wouldYouLikeToDeleteMethod", {
+                        method,
+                      })
+                    )
+                  ) {
+                    deleteAMethodOfPrevention({
+                      category: categoryForModal,
+                      methodId: _id,
+                    });
+                    setModalData({ category: "", methods: [] });
+                  }
+                }}
               >
                 <img src={bin} />
               </button>
